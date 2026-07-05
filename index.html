@@ -288,7 +288,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
           <li>Seinät centerlinellä + paksuudella</li>
           <li>Laatat, pilarit, ovet, ikkunat, tilat</li>
           <li>IfcWall / Slab / Column / Door / Window / Space</li>
-          <li>QA-raportti: poikkeama pilveen mm-tasolla</li>
+          <li>QA-raportti: pintatarkkuus + tarkistuslista</li>
         </ul>
       </div>
     </div>
@@ -363,11 +363,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
     <details class="reveal"><summary>Toimiiko IFC Revitissä?</summary><div class="body">Toimii. Tuotettu IFC on schema-validi IFC2X3 täydellä spatiaalihierarkialla, oikeilla yksiköillä (mm) ja ilman orpoja elementtejä. Huom: oikean keilausdatan koordinaatit voivat olla kaukana origosta, jolloin Revit voi varoittaa "far from origin", ja tähän voi lisätä nollauspisteen vähennyksen vientiin.</div></details>
 
-    <details class="reveal"><summary>Kuinka tarkka malli on?</summary><div class="body">Geometria johdetaan suoraan pisteistä robustilla sovituksella (IRLS), ja malli on tyypillisesti alle millimetrin tarkkuudella keskimäärin. Per-piste-poikkeama vastaa pääosin keilaimen omaa kohinaa, ei mallin virhettä. QA-raportti antaa poikkeamajakauman valitulla toleranssilla (esim. 2.5 mm).</div></details>
+    <details class="reveal"><summary>Kuinka tarkka malli on?</summary><div class="body">Seinäpinnat lukitaan raakapisteisiin ali-millimetrin tasolla: ground-truth-aineistoilla mitattu pintatarkkuus on tyypillisesti 0.0–0.3 mm ja paksuudet mitataan sub-bin-piikkisovituksella (mitattu arvo talteen, toimitusarvo snäpätään standardiin vain ±12 mm sisältä). Per-piste-poikkeama vastaa pääosin keilaimen omaa kohinaa, ei mallin virhettä. QA-raportin Pintatarkkuus-osio erottaa nämä toisistaan, ja seinät joiden kohdalla pilvessä ei ole kunnollista pintaa nostetaan TARKISTA MANUAALISESTI -listalle sen sijaan että ne menisivät hiljaa läpi.</div></details>
 
     <details class="reveal"><summary>Mitä tiedostomuotoja syötteeksi kelpaa?</summary><div class="body">E57, LAS, LAZ ja PTS, sekä PLY testaukseen. E57:stä luetaan myös skannerin sijainnit, mitä käytetään varjojen ja aukkojen erottamiseen.</div></details>
 
-    <details class="reveal"><summary>Miten useampi skanni yhdistetään?</summary><div class="body">Kerros käsitellään viipale kerrallaan, ja skannit kohdistetaan toisiinsa ICP-rekisteröinnillä (point-to-plane). Muisti pysyy kurissa: huippukäyttö = yksi tiedosto kerrallaan.</div></details>
+    <details class="reveal"><summary>Miten useampi skanni yhdistetään?</summary><div class="body">Kerros käsitellään viipale kerrallaan, ja skannit kohdistetaan toisiinsa ICP-rekisteröinnillä (point-to-plane). Muisti pysyy kurissa: huippukäyttö = yksi tiedosto kerrallaan. Syötevahti varoittaa jos skannit eivät jaa pintoja keskenään (eri kohteiden tiedostot samassa ajossa) tai pilvi hajoaa erillisiin alueisiin — tulos ei silloin ole luotettava.</div></details>
 
     <details class="reveal"><summary>Onko se valmis kaupalliseen käyttöön?</summary><div class="body">Riippuvuudet sallivat kaupallisen käytön (ifcopenshell LGPL pip-asennuksena, ezdxf MIT). Sovellus paketoidaan PyInstallerilla .exe:ksi, sama pohja kuin dwg2ifc-tuotteessa.</div></details>
   </div>
