@@ -243,11 +243,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
     </div>
 
     <div class="flow reveal">
-      <span class="stage">Lataus</span><span class="arr">→</span>
-      <span class="stage">Segmentointi</span><span class="arr">→</span>
-      <span class="stage">Semantiikka</span><span class="arr">→</span>
+      <span class="stage">Luku</span><span class="arr">→</span>
+      <span class="stage">Tunnistus</span><span class="arr">→</span>
+      <span class="stage">Siivous</span><span class="arr">→</span>
       <span class="stage">Malli</span><span class="arr">→</span>
-      <span class="stage">Export</span>
+      <span class="stage">Vienti</span>
     </div>
   </div>
 </header>
@@ -283,12 +283,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
         </ul>
       </div>
       <div class="pane out">
-        <div class="label">Ulos · StructuralModel</div>
+        <div class="label">Ulos · puhdas malli</div>
         <ul>
-          <li>Seinät centerlinellä + paksuudella</li>
-          <li>Laatat, pilarit, ovet, ikkunat, tilat</li>
-          <li>IfcWall / Slab / Column / Door / Window / Space</li>
-          <li>QA-raportti: pintatarkkuus + tarkistuslista</li>
+          <li>Seinät keskilinjalla ja paksuudella</li>
+          <li>Laatat, pilarit, ovet, ikkunat ja tilat</li>
+          <li>Oikeita IFC-objekteja, ei pelkkiä viivoja</li>
+          <li>Laaturaportti: pintatarkkuus + tarkistuslista</li>
         </ul>
       </div>
     </div>
@@ -297,14 +297,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
 <section id="miten" class="alt">
   <div class="wrap">
-    <h2 class="h2">Viisi vaihetta, yksi totuus.</h2>
-    <p class="lead">Jokainen vaihe lukee ja kirjoittaa samaa <span class="mono" style="color:var(--accent)">StructuralModel</span>-objektia. Ei globaaleja muuttujia, ei piilotettuja riippuvuuksia; kaikki export tehdään samasta lähteestä, joten tulos on jäljitettävissä.</p>
+    <h2 class="h2">Näin se toimii — pähkinänkuoressa</h2>
+    <p class="lead">Laserkeilain tallentaa tilan miljoonina yksittäisinä pisteinä. Sinun ei tarvitse ymmärtää pisteistä mitään: vedät tiedoston sisään, painat Konvertoi, ja saat valmiin mallin. Näin ohjelma pääsee siihen neljässä askeleessa.</p>
 
     <div class="steps">
-      <div class="step-row reveal"><div class="num">01</div><div><span class="tag-mono">geometry</span><h3>Lataus &amp; esikäsittely</h3><p>E57/LAS/LAZ/PTS sisään. Koordinaatit normalisoidaan, pilvi harvennetaan voxel-ruudukolla ja kohina suodatetaan (statistical outlier + radius). Monen skannin yhdistys ICP-rekisteröinnillä, pisteet linjataan toisiinsa automaattisesti.</p></div></div>
-      <div class="step-row reveal"><div class="num">02</div><div><span class="tag-mono">segmentation</span><h3>Elementtien tunnistus</h3><p>ElementDetector-rajapinta: WallDetector, SlabDetector, ColumnDetector, BeamDetector. Seinät tasodetektiolla ja 2D-tiheydellä, oviaukot seinäpinnan reikinä, varjot eroteltu skannerin sädetestillä.</p></div></div>
-      <div class="step-row reveal"><div class="num">03</div><div><span class="tag-mono">semantics</span><h3>Merkitys &amp; laatu</h3><p>Keskilinja, robusti paksuus (IRLS), korkeus, tilojen johtaminen ja confidence-pisteytys. Kalusteet ja LVI suodatetaan rakenteista pois, jää pelkkä runko.</p></div></div>
-      <div class="step-row reveal"><div class="num">04</div><div><span class="tag-mono">ifc · export</span><h3>Vienti</h3><p>StructuralModelista kirjoitetaan IFC (ifcopenshell) ja DXF (ezdxf). Materiaalit, psetit ja monikerroksinen spatiaalihierarkia mukana. IFC avautuu suoraan Revitiin ja ArchiCADiin muokattavaksi.</p></div></div>
+      <div class="step-row reveal"><div class="num">01</div><div><h3>Lukee keilauksen</h3><p>Avaat keilaustiedoston (E57, LAS, LAZ, PTS tai PLY). Jos sinulla on monta skannia samasta kohteesta, vedät ne kaikki kerralla — ohjelma yhdistää ne yhdeksi kokonaisuudeksi.</p></div></div>
+      <div class="step-row reveal"><div class="num">02</div><div><h3>Tunnistaa rakenteet</h3><p>Ohjelma etsii pistesumusta seinät, lattiat, katot, ovet, ikkunat, pilarit ja palkit — ja päättelee huoneet niiden väliin. Jokainen mitta (paksuus, korkeus, sijainti) luetaan suoraan pisteistä, ei arvata.</p></div></div>
+      <div class="step-row reveal"><div class="num">03</div><div><h3>Siivoaa turhan pois</h3><p>Kalusteet, hyllyt, putket, kaapelit ja keilauksen kohina suodatetaan pois. Jäljelle jää pelkkä rakennuksen runko — juuri se mitä mallissa tarvitaan.</p></div></div>
+      <div class="step-row reveal"><div class="num">04</div><div><h3>Antaa valmiin mallin</h3><p>Tuloksena on IFC-tiedosto (ja halutessasi DXF), joka avautuu suoraan suunnitteluohjelmiin: Revit, ArchiCAD, AutoCAD, Solibri. Mukana laaturaportti, joka kertoo millimetreinä kuinka tarkka malli on ja mitä kohtia kannattaa vielä tarkistaa.</p></div></div>
     </div>
   </div>
 </section>
@@ -326,17 +326,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
       </div>
       <div class="col">
         <h3>Raahaa &amp; vie</h3>
-        <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-top:12px">Avaa sovellus, raahaa skannitiedostot ikkunaan (<span class="mono" style="color:var(--accent)">.e57 .las .laz .ply</span>), säädä tarkkuus ja seinädetektori, ja vie IFC + DXF. Tulokset näkyvät kolmella välilehdellä: <b style="color:var(--ink)">Loki</b>, <b style="color:var(--ink)">Pohja</b> ja <b style="color:var(--ink)">QA</b>.</p>
+        <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-top:12px">Avaa sovellus, raahaa keilaustiedostot (tai koko kansio) ikkunaan, tarkista asetukset ja paina <b style="color:var(--ink)">Konvertoi</b>. Malli piirtyy <b style="color:var(--ink)">Pohja</b>-välilehdelle, ja <b style="color:var(--ink)">Loki</b> näyttää mitä ajon aikana tapahtui. Valmiit tiedostot (IFC, DXF, laaturaportti) tallentuvat valitsemaasi tuloskansioon.</p>
       </div>
     </div>
 
-    <h3 style="font-size:24px;margin-top:56px;font-weight:600">Asetukset sovelluksessa</h3>
+    <h3 style="font-size:24px;margin-top:56px;font-weight:600">Asetukset — mihin mikäkin on</h3>
+    <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-top:10px;max-width:64ch">Oletukset toimivat useimmiten sellaisenaan — voit painaa Konvertoi heti. Tässä silti selkokielellä mitä jokainen valinta tekee ja milloin sitä kannattaa koskea.</p>
     <table>
-      <thead><tr><th>Asetus</th><th>Oletus</th><th>Selitys</th></tr></thead>
+      <thead><tr><th>Valinta</th><th>Mihin se on</th><th>Suositus</th></tr></thead>
       <tbody>
-        <tr><td>Voxel-koko</td><td><span class="mono">20 mm</span></td><td>Harvennusruudukon koko. Pienempi = tarkempi mutta hitaampi.</td></tr>
-        <tr><td>Seinädetektori</td><td><span class="mono">RANSAC</span></td><td>Tasopohjainen <span class="mono">RANSAC</span> tai 2D-<span class="mono">tiheys</span>.</td></tr>
-        <tr><td>Vienti</td><td><span class="mono">IFC + DXF</span></td><td>Rastita kumman muodon tuotat.</td></tr>
+        <tr><td>Pistepilvi</td><td>Keilaustiedosto(t), jonka muunnat. Vedä yksi tiedosto, monta tiedostoa tai koko kansio ikkunaan. Kelpaavat muodot: <span class="mono">E57</span>, <span class="mono">LAS</span>, <span class="mono">LAZ</span>, <span class="mono">PTS</span>, <span class="mono">PLY</span>.</td><td>Vedä saman kohteen kaikki skannit kerralla — ne yhdistyvät automaattisesti.</td></tr>
+        <tr><td>Voxel-koko:<br>Automaattinen</td><td>Kuinka tiheästi pilve luetaan (tarkkuus vs. nopeus). Automaatti valitsee sopivan tason kohteen mukaan.</td><td>Pidä päällä. Käsisäätöä tarvitaan vain erikoistapauksissa.</td></tr>
+        <tr><td>Kalustesuodatus</td><td>Poistaa kalusteet ja krääsän ennen tunnistusta (tekoäly tunnistaa mikä on rakennetta ja mikä ei). Parantaa tarkkuutta kalustetuissa tiloissa.</td><td>Pidä päällä.</td></tr>
+        <tr><td>Kohdetyyppi</td><td><b style="color:var(--ink)">Asunto / toimisto</b> — tarkin oletus tavallisiin sisätiloihin.<br><b style="color:var(--ink)">Liiketila / työmaa</b> — poistaa lisäksi lattiasta kattoon ulottuvat <b>hyllyrivit</b> ja työmaakrääsän (myymälät, varastot, keskeneräiset kohteet).</td><td>Valitse kohteen mukaan. Väärä valinta ei riko tulosta, mutta oikea on tarkempi.</td></tr>
+        <tr><td>Rekisteröinti<br>(ICP)</td><td>Kohdistaa erilliset, <b>kohdistamattomat</b> raakaskannit toisiinsa. Jos pilvi on jo yhdistetty keilainohjelmassa, tätä ei tarvita.</td><td>Jätä pois normaalisti — muuten vain kaksinkertaistaa ajan.</td></tr>
+        <tr><td>QA/LOA-raportti<br>+ tol</td><td>Laaturaportti: kuinka hyvin malli istuu pisteisiin. <span class="mono">tol</span> = kuinka tiukalla toleranssilla (mm) tarkistetaan.</td><td>Pidä päällä. Katso raportin <b>Pintatarkkuus</b>-osio — se on todellinen mm-luku (ylempi %-luku sisältää keilaimen kohinaa).</td></tr>
+        <tr><td>Vienti:<br>IFC / DXF</td><td>Missä muodossa tulos kirjoitetaan. <b>IFC</b> = älykäs malli suunnitteluohjelmiin, <b>DXF</b> = 2D/3D-piirustus CADiin.</td><td>IFC päälle aina; DXF jos tarvitset CAD-piirustuksen.</td></tr>
+        <tr><td>Lähetä<br>diagnostiikka</td><td>Niputtaa ajojen tekniset lokit (versio, vaiheet, varoitukset, tulokset — <b>ei geometriaa, ei koordinaatteja</b>) ja avaa sähköpostiluonnoksen. Turvallinen jakaa vaikka itse data olisi salaista.</td><td>Käytä kun jokin tökkii tai haluat antaa palautetta — se auttaa korjaamaan ja parantamaan ohjelmaa.</td></tr>
       </tbody>
     </table>
   </div>
@@ -350,7 +356,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
     <div class="outs" style="grid-template-columns:repeat(3,1fr)">
       <div class="out-card reveal"><div class="ext">.ifc</div><h4>IFC-malli</h4><p>IFC2X3, avautuu Solibrissa, Revitissä ja ArchiCADissa muokattavaksi. Walls/Slabs/Columns/Doors/Windows/Spaces materiaaleineen.</p></div>
       <div class="out-card reveal"><div class="ext">.dxf</div><h4>DXF-piirustus</h4><p>2D/3D AutoCADiin (ezdxf). Pohjapiirros suoraan jatkomallinnukseen.</p></div>
-      <div class="out-card reveal"><div class="ext">.json</div><h4>StructuralModel</h4><p>Sisäinen schema + QA-raportti. Kaikki export tästä, täysin jäljitettävä.</p></div>
+      <div class="out-card reveal"><div class="ext">.txt</div><h4>Laaturaportti</h4><p>Kuinka tarkka malli on millimetreinä, ja lista kohdista jotka kannattaa tarkistaa manuaalisesti.</p></div>
     </div>
   </div>
 </section>
@@ -365,7 +371,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
     <details class="reveal"><summary>Kuinka tarkka malli on?</summary><div class="body">Seinäpinnat lukitaan raakapisteisiin ali-millimetrin tasolla: ground-truth-aineistoilla mitattu pintatarkkuus on tyypillisesti 0.0–0.3 mm ja paksuudet mitataan sub-bin-piikkisovituksella (mitattu arvo talteen, toimitusarvo snäpätään standardiin vain ±12 mm sisältä). Per-piste-poikkeama vastaa pääosin keilaimen omaa kohinaa, ei mallin virhettä. QA-raportin Pintatarkkuus-osio erottaa nämä toisistaan, ja seinät joiden kohdalla pilvessä ei ole kunnollista pintaa nostetaan TARKISTA MANUAALISESTI -listalle sen sijaan että ne menisivät hiljaa läpi.</div></details>
 
-    <details class="reveal"><summary>Mitä tiedostomuotoja syötteeksi kelpaa?</summary><div class="body">E57, LAS, LAZ ja PTS, sekä PLY testaukseen. E57:stä luetaan myös skannerin sijainnit, mitä käytetään varjojen ja aukkojen erottamiseen.</div></details>
+    <details class="reveal"><summary>Kumman kohdetyypin valitsen?</summary><div class="body">Valitse <b>Asunto / toimisto</b> tavallisiin sisätiloihin — se on tarkin oletus. Valitse <b>Liiketila / työmaa</b> jos kohteessa on lattiasta kattoon ulottuvia hyllyrivejä tai työmaakrääsää (myymälät, varastot, keskeneräiset rungot); se poistaa ne rakenteiden joukosta. Väärä valinta ei riko tulosta — se on vain hieman epätarkempi. Jos et ole varma, kokeile molempia ja katso kumpi antaa siistimmän pohjan.</div></details>
+
+    <details class="reveal"><summary>Mitä tiedostomuotoja syötteeksi kelpaa?</summary><div class="body">E57, LAS, LAZ ja PTS, sekä PLY. E57:stä luetaan myös skannerin sijainnit, mitä käytetään varjojen ja aukkojen erottamiseen. Isotkin tiedostot (satoja miljoonia pisteitä) käsitellään ilman että muisti loppuu.</div></details>
+
+    <details class="reveal"><summary>Jokin meni pieleen — miten saan apua?</summary><div class="body">Paina sovelluksen <b>Lähetä diagnostiikka kehittäjälle</b> -painiketta. Se niputtaa ajojen tekniset lokit (versio, vaiheet, varoitukset, tulokset) ja avaa valmiin sähköpostiluonnoksen. Raportti <b>ei sisällä geometriaa eikä koordinaatteja</b>, joten sen voi lähettää vaikka itse keilausdata olisi salaista. Kerro samalla lyhyesti mikä meni pieleen tai mitkä kohdat mallissa olivat väärin — juuri se palaute auttaa korjaamaan ja parantamaan tunnistusta.</div></details>
 
     <details class="reveal"><summary>Miten useampi skanni yhdistetään?</summary><div class="body">Kerros käsitellään viipale kerrallaan, ja skannit kohdistetaan toisiinsa ICP-rekisteröinnillä (point-to-plane). Muisti pysyy kurissa: huippukäyttö = yksi tiedosto kerrallaan. Syötevahti varoittaa jos skannit eivät jaa pintoja keskenään (eri kohteiden tiedostot samassa ajossa) tai pilvi hajoaa erillisiin alueisiin — tulos ei silloin ole luotettava.</div></details>
 
@@ -377,8 +387,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
   <h2>Anna keilaimen mitata.<br>Anna scan2bimin <span style="color:var(--accent)">mallintaa</span>.</h2>
   <p class="lead">Yksi komento pistepilvestä valmiiseen IFC-malliin.</p>
   <div class="cta" style="justify-content:center">
-    <a href="#kaytto" class="btn btn-primary">Aloita käyttö →</a>
-    <a href="#miten" class="btn btn-ghost">Lue arkkitehtuuri</a>
+    <a href="https://github.com/Mcrauli/scan2bim-web/releases/latest/download/scan2bim-Setup.exe" class="btn btn-primary">Lataa Windowsille ↓</a>
+    <a href="#miten" class="btn btn-ghost">Näin se toimii</a>
   </div>
 </div>
 
