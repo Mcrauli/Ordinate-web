@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>scan2bim · pistepilvi puhtaaksi arkkitehtimalliksi</title>
-<meta name="description" content="scan2bim muuntaa laserkeilatun pistepilven puhtaaksi IFC- ja DXF-malliksi. Seinät, laatat, pilarit, palkit, ovet ja ikkunat automaattisesti; kalusteet ja LVI pois.">
+<meta name="description" content="scan2bim muuntaa laserkeilatun pistepilven puhtaaksi IFC4-malliksi. Seinät, laatat, pilarit, palkit, ovet ja ikkunat automaattisesti; kalusteet ja LVI pois.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,7 +235,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
 <header>
   <div class="wrap">
-    <span class="tag">Pistepilvi → BIM · IFC / DXF</span>
+    <span class="tag">Pistepilvi → BIM · IFC4</span>
     <h1>Laserkeilaus sisään.<br><em>Puhdas malli</em> ulos.</h1>
     <p class="sub">scan2bim lukee miljoonien pisteiden keilausdatan ja tuottaa siitä siistin, mitattavan arkkitehtimallin: seinät, laatat, pilarit, palkit, ovet ja ikkunat tunnistettuna. Kalusteet, LVI ja kohina suodatetaan pois.</p>
     <div class="cta">
@@ -269,7 +269,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
       </article>
       <article class="why-item reveal">
         <h3>Suoraan <em>työkaluihisi</em></h3>
-        <p>IFC avautuu Revitissä, ArchiCADissa ja Solibrissa, DXF AutoCADissa. Ovet ja ikkunat ovat oikeita ovi- ja ikkunaobjekteja, eivät pelkkiä reikiä seinässä.</p>
+        <p>IFC4 avautuu Revitissä, ArchiCADissa ja Solibrissa. Ovet ja ikkunat ovat oikeita ovi- ja ikkunaobjekteja, eivät pelkkiä reikiä seinässä.</p>
       </article>
     </div>
 
@@ -303,9 +303,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
     <div class="steps">
       <div class="step-row reveal"><div class="num">01</div><div><h3>Lukee keilauksen</h3><p>Avaat keilaustiedoston (E57, LAS, LAZ, PTS tai PLY). Jos sinulla on monta skannia samasta kohteesta, vedät ne kaikki kerralla — ohjelma yhdistää ne yhdeksi kokonaisuudeksi.</p></div></div>
-      <div class="step-row reveal"><div class="num">02</div><div><h3>Tunnistaa rakenteet</h3><p>Ohjelma etsii pistesumusta seinät, lattiat, katot, ovet, ikkunat, pilarit ja palkit — ja päättelee huoneet niiden väliin. Jokainen mitta (paksuus, korkeus, sijainti) luetaan suoraan pisteistä, ei arvata.</p></div></div>
-      <div class="step-row reveal"><div class="num">03</div><div><h3>Siivoaa turhan pois</h3><p>Kalusteet, hyllyt, putket, kaapelit ja keilauksen kohina suodatetaan pois. Jäljelle jää pelkkä rakennuksen runko — juuri se mitä mallissa tarvitaan.</p></div></div>
-      <div class="step-row reveal"><div class="num">04</div><div><h3>Antaa valmiin mallin</h3><p>Tuloksena on IFC-tiedosto (ja halutessasi DXF), joka avautuu suoraan suunnitteluohjelmiin: Revit, ArchiCAD, AutoCAD, Solibri. Mukana laaturaportti, joka kertoo millimetreinä kuinka tarkka malli on ja mitä kohtia kannattaa vielä tarkistaa.</p></div></div>
+      <div class="step-row reveal"><div class="num">02</div><div><h3>Siivoaa turhan pois</h3><p>Ensin kalusteet, hyllyt, putket ja kaapelit pois. Sen tekee neuroverkko, joka luokittelee jokaisen pisteen erikseen: asuntoesimerkissä 8.9 miljoonasta pisteestä jäi 7.2 miljoonaa rakenteellista. Jäljelle jää pelkkä rakennuksen runko, juuri se mitä mallissa tarvitaan.</p></div></div>
+      <div class="step-row reveal"><div class="num">03</div><div><h3>Tunnistaa rakenteet</h3><p>Puhdistetusta pilvestä etsitään seinät, lattiat, katot, ovet, ikkunat, pilarit ja palkit, ja huoneet päätellään niiden väliin. Jokainen mitta (paksuus, korkeus, sijainti) luetaan suoraan pisteistä, ei arvata. Lopuksi malli tarkistetaan pilveä vasten: seinä jonka pinnalla ei ole pisteitä poistetaan, ja evidenssin yli venytetty pää leikataan takaisin.</p></div></div>
+      <div class="step-row reveal"><div class="num">04</div><div><h3>Antaa valmiin mallin</h3><p>Tuloksena on IFC4-tiedosto, joka avautuu suoraan suunnitteluohjelmiin: Revit, ArchiCAD, Solibri. Mukana laaturaportti, joka kertoo millimetreinä kuinka tarkka malli on ja mitä kohtia kannattaa vielä tarkistaa.</p></div></div>
     </div>
   </div>
 </section>
@@ -327,7 +327,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
       </div>
       <div class="col">
         <h3>Raahaa &amp; vie</h3>
-        <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-top:12px">Avaa sovellus, raahaa keilaustiedostot (tai koko kansio) ikkunaan, tarkista asetukset ja paina <b style="color:var(--ink)">Konvertoi</b>. Malli piirtyy <b style="color:var(--ink)">Pohja</b>-välilehdelle, ja <b style="color:var(--ink)">Loki</b> näyttää mitä ajon aikana tapahtui. Valmiit tiedostot (IFC, DXF, laaturaportti) tallentuvat valitsemaasi tuloskansioon.</p>
+        <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-top:12px">Avaa sovellus, raahaa keilaustiedostot (tai koko kansio) ikkunaan, tarkista asetukset ja paina <b style="color:var(--ink)">Konvertoi</b>. Malli piirtyy <b style="color:var(--ink)">Pohja</b>-välilehdelle, ja <b style="color:var(--ink)">Loki</b> näyttää mitä ajon aikana tapahtui. Valmiit tiedostot (IFC ja laaturaportti) tallentuvat valitsemaasi tuloskansioon.</p>
       </div>
     </div>
 
@@ -342,7 +342,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
         <tr><td>Kohdetyyppi</td><td><b style="color:var(--ink)">Asunto / toimisto</b> — tarkin oletus tavallisiin sisätiloihin.<br><b style="color:var(--ink)">Liiketila / työmaa</b> — poistaa lisäksi lattiasta kattoon ulottuvat <b>hyllyrivit</b> ja työmaakrääsän (myymälät, varastot, keskeneräiset kohteet).</td><td>Valitse kohteen mukaan. Väärä valinta ei riko tulosta, mutta oikea on tarkempi.</td></tr>
         <tr><td>Rekisteröinti<br>(ICP)</td><td>Kohdistaa erilliset, <b>kohdistamattomat</b> raakaskannit toisiinsa. Jos pilvi on jo yhdistetty keilainohjelmassa, tätä ei tarvita.</td><td>Jätä pois normaalisti — muuten vain kaksinkertaistaa ajan.</td></tr>
         <tr><td>QA/LOA-raportti<br>+ tol</td><td>Laaturaportti: kuinka hyvin malli istuu pisteisiin. <span class="mono">tol</span> = kuinka tiukalla toleranssilla (mm) tarkistetaan.</td><td>Pidä päällä. Katso raportin <b>Pintatarkkuus</b>-osio — se on todellinen mm-luku (ylempi %-luku sisältää keilaimen kohinaa).</td></tr>
-        <tr><td>Vienti:<br>IFC / DXF</td><td>Missä muodossa tulos kirjoitetaan. <b>IFC</b> = älykäs malli suunnitteluohjelmiin, <b>DXF</b> = 2D/3D-piirustus CADiin.</td><td>IFC päälle aina; DXF jos tarvitset CAD-piirustuksen.</td></tr>
+        
         <tr><td>Koordinaatisto</td><td>Missä koordinaatistossa keilaukset ovat. Malli kirjoitetaan aina keilausten <b>oikeaan sijaintiin</b> — niin se asettuu pistepilven päälle täsmälleen (esim. Cintoossa) ja avautuu Revitissä oikeaan kohtaan. Tämä valinta kertoo <b>minkä järjestelmän</b> koordinaateista on kyse. Oletus on Suomen <b>ETRS-TM35FIN</b>; listasta löytyy myös GK-kaistat ja vanha KKJ.</td><td>Pidä oletuksena, ellet tiedä keilausten käyttävän muuta järjestelmää. Oikean saa yleensä keilaimen/E57:n tiedoista.</td></tr>
         <tr><td>Lähetä<br>diagnostiikka</td><td>Niputtaa ajojen tekniset lokit (versio, vaiheet, varoitukset, tulokset — <b>ei geometriaa, ei koordinaatteja</b>) ja avaa sähköpostiluonnoksen. Turvallinen jakaa vaikka itse data olisi salaista.</td><td>Käytä kun jokin tökkii tai haluat antaa palautetta — se auttaa korjaamaan ja parantamaan ohjelmaa.</td></tr>
       </tbody>
@@ -352,12 +352,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
 <section id="tulokset" class="alt">
   <div class="wrap">
-    <h2 class="h2">Kolme tiedostoa, suoraan tuotantoon.</h2>
+    <h2 class="h2">Malli, ja kirjanpito siitä mihin se perustuu.</h2>
     <p class="lead">Yksi ajo tuottaa koko paketin, joka menee suoraan suunnittelutyökaluihin.</p>
 
-    <div class="outs" style="grid-template-columns:repeat(3,1fr)">
+    <div class="outs" style="grid-template-columns:repeat(2,1fr)">
       <div class="out-card reveal"><div class="ext">.ifc</div><h4>IFC-malli</h4><p>IFC4, avautuu Revitissä, ArchiCADissa ja Solibrissa muokattavaksi. Seinät, laatat, pilarit, palkit, ovet, ikkunat ja tilat materiaaleineen. Malli on keilausten <b>oikeassa sijainnissa</b> — asettuu pistepilven päälle täsmälleen.</p></div>
-      <div class="out-card reveal"><div class="ext">.dxf</div><h4>DXF-piirustus</h4><p>2D/3D AutoCADiin (ezdxf). Pohjapiirros suoraan jatkomallinnukseen.</p></div>
       <div class="out-card reveal"><div class="ext">.txt</div><h4>Laaturaportti</h4><p>Kuinka tarkka malli on millimetreinä, ja lista kohdista jotka kannattaa tarkistaa manuaalisesti.</p></div>
     </div>
   </div>
@@ -375,7 +374,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
     <details class="reveal"><summary>Onko malli samassa sijainnissa kuin keilaukset?</summary><div class="body">On — malli kirjoitetaan keilausten <b>oikeisiin koordinaatteihin</b> (todelliseen itä-/pohjois­sijaintiin ja korkeuteen). Kun sen asettaa pistepilven päälle vertailua varten — esimerkiksi Cintoossa — jokainen seinä ja objekti osuu täsmälleen kohdalleen, ei tarvita erillistä kohdistusta. IFC:hen kirjoitetaan lisäksi <b>koordinaatiston tunnus</b> (georeferointi), jotta Revit ja Navisworks osaavat sijoittaa mallin oikeaan kohtaan isoillakin koordinaateilla. Koordinaatiston voi valita asetuksista; oletus on Suomen ETRS-TM35FIN.</div></details>
 
-    <details class="reveal"><summary>Kuinka tarkka malli on?</summary><div class="body">Seinäpinnat asettuvat keilattuihin pisteisiin tyypillisesti alle millimetrin tarkkuudella — testiaineistoilla mitattu pintatarkkuus on 0.0–0.3 mm. Seinän paksuus mitataan pisteistä ja pyöristetään standardipaksuuteen vain, jos mitattu arvo on aivan sen tuntumassa. Laaturaportin <b>Pintatarkkuus</b>-osio kertoo todellisen millimetriluvun (raportin %-luku sisältää myös keilaimen oman kohinan, joka ei ole mallin virhettä). Jos jonkin seinän kohdalla keilauksessa ei ole kunnollista pintaa, se nostetaan TARKISTA MANUAALISESTI -listalle sen sijaan että menisi hiljaa läpi.</div></details>
+    <details class="reveal"><summary>Kuinka tarkka malli on?</summary><div class="body">Seinäpinnat asettuvat keilattuihin pisteisiin tyypillisesti alle millimetrin tarkkuudella — testiaineistoilla mitattu pintatarkkuus on 0.0–0.3 mm. Seinän paksuus mitataan pisteistä ja pyöristetään standardipaksuuteen vain, jos mitattu arvo on aivan sen tuntumassa. Laaturaportin <b>Pintatarkkuus</b>-osio kertoo todellisen millimetriluvun (raportin %-luku sisältää myös keilaimen oman kohinan, joka ei ole mallin virhettä). Jos jonkin seinän kohdalla keilauksessa ei ole kunnollista pintaa, se nostetaan TARKISTA MANUAALISESTI -listalle sen sijaan että menisi hiljaa läpi.<br><br><b style="color:var(--ink)">Tarkkuus ja kattavuus ovat eri asioita.</b> Yllä oleva luku kertoo kuinka hyvin löydetty seinä osuu paikalleen. Se ei kerro löytyikö kaikki. Julkista Rohbau3D-vertailuaineistoa vasten (viisi työmaakohdetta, joissa jokainen piste on valmiiksi luokiteltu) malli osui <b style="color:var(--ink)">92–98 %:sti</b> aitoon seinään, ja löysi <b style="color:var(--ink)">81–89 %</b> aidoista seinäpisteistä. Loput jäävät katveeseen: pinnat joita keilain ei yksinkertaisesti nähnyt. Sitä ei korjaa ohjelma vaan lisäasema keilausvaiheessa.</div></details>
 
     <details class="reveal"><summary>Kumman kohdetyypin valitsen?</summary><div class="body">Valitse <b>Asunto / toimisto</b> tavallisiin sisätiloihin — se on tarkin oletus. Valitse <b>Liiketila / työmaa</b> jos kohteessa on lattiasta kattoon ulottuvia hyllyrivejä tai työmaakrääsää (myymälät, varastot, keskeneräiset rungot); se poistaa ne rakenteiden joukosta. Väärä valinta ei riko tulosta — se on vain hieman epätarkempi. Jos et ole varma, kokeile molempia ja katso kumpi antaa siistimmän pohjan.</div></details>
 
@@ -401,7 +400,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 <footer>
   <div class="wrap">
     <div class="brand" style="font-size:17px"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>scan<b>2</b>bim</div>
-    <div>Pistepilvi → puhdas arkkitehtimalli · IFC / DXF</div>
+    <div>Pistepilvi → puhdas arkkitehtimalli · IFC4</div>
   </div>
 </footer>
 
