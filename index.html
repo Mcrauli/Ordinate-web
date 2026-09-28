@@ -13,207 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0a0e14;
-  --bg-2:#0f1620;
-  --panel:#121a26;
-  --line:#1e2a3a;
-  --line-2:#2a3a50;
-  --ink:#e6edf5;
-  --muted:#9aabbd;
-  --dim:#7f93a9;
-  --accent:#c6f24e;
-  --accent-2:#39d0d8;
-  --r:14px;
-  --maxw:1180px;
-  --ease:cubic-bezier(.22,1,.36,1);
-  --z-nav:40;
-  --z-menu:50;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{
-  background:var(--bg);color:var(--ink);
-  font-family:"Spline Sans",system-ui,sans-serif;font-size:18px;line-height:1.7;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-img{max-width:100%;height:auto;display:block}
-h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
-p{text-wrap:pretty}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-section[id]{scroll-margin-top:84px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px);position:relative}
-.accent{color:var(--accent)}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(10,14,20,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:11px;font-family:"Bricolage Grotesque";font-weight:800;font-size:21px;letter-spacing:-.03em;text-decoration:none}
-.logo{width:30px;height:30px;flex:none}
-.navlinks{display:flex;align-items:center;gap:30px;font-size:15.5px;color:var(--muted)}
-.navlinks a{text-decoration:none;transition:color .2s}
-.navlinks a:hover{color:var(--ink)}
-.navlinks .btn{padding:10px 18px;font-size:15px;color:var(--bg)}
-.navtoggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);width:46px;height:44px;border-radius:10px;font-size:18px;cursor:pointer}
-@media(max-width:820px){
-  .navtoggle{display:block}
-  .navlinks{display:none}
-  .navlinks.open{display:flex;flex-direction:column;align-items:flex-start;gap:20px;position:absolute;top:68px;left:0;right:0;z-index:var(--z-menu);background:rgba(10,14,20,.98);border-bottom:1px solid var(--line);padding:22px clamp(20px,4vw,40px) 26px}
-}
-
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-weight:600;font-size:17px;padding:15px 26px;border-radius:12px;border:1px solid transparent;text-decoration:none;cursor:pointer;transition:transform .25s var(--ease),background .2s,border-color .2s,color .2s;min-height:48px}
-.btn-primary{background:var(--accent);color:var(--bg)}
-.btn-primary:hover{transform:translateY(-2px)}
-.btn-ghost{border-color:var(--line-2);color:var(--ink);background:transparent}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.btn:active{transform:none}
-.btn svg{width:18px;height:18px}
-
-/* HERO */
-.hero{padding:clamp(56px,9vw,104px) 0 0}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
-.hero h1{font-size:clamp(44px,7.2vw,88px);font-weight:800;letter-spacing:-.035em;max-width:14ch}
-.hero .sub{margin-top:26px;font-size:clamp(18px,2.1vw,21px);color:var(--muted);max-width:60ch}
-.hero .sub strong{color:var(--ink);font-weight:500}
-.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;align-items:center}
-.cta .note{font-size:14.5px;color:var(--dim)}
-
-/* COMPARE SLIDER */
-.compare-wrap{margin-top:clamp(48px,7vw,80px);position:relative}
-.compare{
-  position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;
-  border:1px solid var(--line-2);background:var(--bg-2);
-  --pos:50%;
-  box-shadow:0 40px 120px -60px rgba(57,208,216,.35);
-  touch-action:pan-y;user-select:none;-webkit-user-select:none;
-}
-.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.compare .top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
-.compare .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent);transform:translateX(-1px);pointer-events:none}
-.compare .knob{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(198,242,78,.16)}
-.compare .knob svg{width:22px;height:22px;color:var(--bg)}
-.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-.compare .lbl{position:absolute;top:18px;font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.04em;padding:7px 12px;border-radius:8px;background:rgba(10,14,20,.78);border:1px solid var(--line-2);pointer-events:none}
-.compare .lbl.l{left:18px;color:var(--accent-2)}
-.compare .lbl.r{right:18px;color:var(--accent)}
-.compare-cap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:14.5px;color:var(--dim)}
-.compare-cap b{color:var(--muted);font-weight:500}
-
-/* SECTIONS */
-section{padding:clamp(80px,11vw,140px) 0}
-.h2{font-size:clamp(34px,5vw,58px);font-weight:800;max-width:17ch}
-.lead{font-size:clamp(18px,2vw,20px);color:var(--muted);max-width:62ch;margin-top:22px}
-
-/* PROBLEM: two-column contrast */
-.problem{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:start}
-.problem .lead{margin-top:0}
-.problem .h2{position:sticky;top:110px}
-@media(max-width:860px){.problem .h2{position:static}}
-.problem .lead + .lead{margin-top:18px}
-.timeline{margin-top:6px;border-top:1px solid var(--line)}
-.trow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line);align-items:center}
-.trow .who{font-family:"Bricolage Grotesque";font-weight:600;font-size:17px}
-.bar{height:14px;border-radius:7px;background:var(--line);position:relative;overflow:hidden}
-.bar i{position:absolute;inset:0 auto 0 0;border-radius:7px}
-.bar.slow i{width:100%;background:repeating-linear-gradient(90deg,#3a4b62 0 14px,#33445a 14px 28px)}
-.bar.fast i{width:6%;background:var(--accent)}
-.trow .t{grid-column:2;font-size:15px;color:var(--dim);margin-top:-8px}
-@media(max-width:860px){.problem{grid-template-columns:1fr}}
-@media(max-width:520px){.trow{grid-template-columns:1fr;gap:10px}.trow .t{grid-column:1;margin-top:0}}
-
-/* HOW: a real 3-step sequence */
-.how{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px);margin-top:clamp(48px,6vw,72px);counter-reset:s}
-.step{position:relative;padding-top:30px;border-top:2px solid var(--line-2)}
-.step::before{counter-increment:s;content:counter(s);position:absolute;top:-2px;left:0;padding:0 14px 0 0;transform:translateY(-58%);background:var(--bg-2);font-family:"Bricolage Grotesque";font-weight:800;font-size:40px;line-height:1;color:var(--accent)}
-.step h3{font-size:clamp(23px,2.4vw,27px);font-weight:600;letter-spacing:-.02em}
-.step p{margin-top:12px;color:var(--muted);font-size:16.5px;line-height:1.65}
-.files{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.files span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent-2);border:1px solid var(--line-2);border-radius:7px;padding:4px 9px}
-@media(max-width:860px){.steps{grid-template-columns:1fr;gap:48px}}
-
-/* WHAT YOU GET: image + defined list */
-.get{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:center;margin-top:clamp(40px,6vw,64px)}
-.get figure{border-radius:16px;overflow:hidden;border:1px solid var(--line-2);background:var(--bg-2)}
-.get figcaption{font-size:14px;color:var(--dim);padding:14px 18px;border-top:1px solid var(--line)}
-.items{list-style:none;border-top:1px solid var(--line)}
-.items li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
-.items svg{width:20px;height:20px;color:var(--accent);margin-top:4px}
-.items b{display:block;font-family:"Bricolage Grotesque";font-weight:600;font-size:19px;letter-spacing:-.01em}
-.items span{color:var(--muted);font-size:16px;line-height:1.6}
-@media(max-width:960px){.get{grid-template-columns:1fr}}
-
-/* WHO */
-.who-list{margin-top:clamp(40px,6vw,64px);border-top:1px solid var(--line)}
-.who-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,5vw,64px);padding:clamp(28px,4vw,40px) 0;border-bottom:1px solid var(--line);align-items:baseline}
-.who-row h3{font-size:clamp(26px,3.3vw,38px);font-weight:800}
-.who-row p{color:var(--muted);font-size:17px;max-width:56ch}
-@media(max-width:760px){.who-row{grid-template-columns:1fr;gap:10px}}
-
-/* TRUST */
-.trust{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.trust-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);margin-top:clamp(40px,6vw,64px)}
-.claim{padding:28px 0;border-top:1px solid var(--line-2)}
-.claim h3{font-size:clamp(22px,2.4vw,27px);font-weight:600;letter-spacing:-.015em}
-.claim p{margin-top:10px;color:var(--muted);font-size:16.5px}
-.claim p strong{color:var(--ink);font-weight:500}
-.honest{border:1px solid var(--line-2);border-radius:16px;padding:clamp(26px,3vw,36px);background:var(--panel);align-self:start}
-.honest h3{font-size:24px;font-weight:600}
-.honest p{margin-top:12px;color:var(--muted);font-size:16.5px}
-@media(max-width:860px){.trust-grid{grid-template-columns:1fr}}
-
-/* PRIVACY band */
-.privacy{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;border:1px solid var(--line-2);border-radius:20px;padding:clamp(28px,5vw,56px);background:radial-gradient(120% 140% at 0% 0%,rgba(57,208,216,.08),transparent 60%),var(--bg-2)}
-.privacy svg{width:clamp(56px,7vw,80px);height:auto;color:var(--accent-2)}
-.privacy h2{font-size:clamp(28px,3.6vw,42px);font-weight:800}
-.privacy p{color:var(--muted);margin-top:12px;max-width:62ch}
-@media(max-width:620px){.privacy{grid-template-columns:1fr}}
-
-/* FAQ */
-.faq{max-width:860px}
-details{border-bottom:1px solid var(--line)}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:"Bricolage Grotesque";font-weight:600;font-size:clamp(19px,2vw,21px);letter-spacing:-.01em}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"";flex:none;width:14px;height:14px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg) translateY(-3px);transition:transform .3s var(--ease)}
-details[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
-details .body{padding:0 0 26px;color:var(--muted);font-size:16.5px;max-width:70ch}
-details .body strong{color:var(--ink);font-weight:500}
-
-/* FINAL CTA */
-.final{text-align:center}
-.final h2{font-size:clamp(38px,6vw,72px);font-weight:800;max-width:16ch;margin:0 auto}
-.final .lead{margin:22px auto 0}
-.final .cta{justify-content:center}
-
-footer{border-top:1px solid var(--line);padding:40px 0 48px;color:var(--dim);font-size:14.5px}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
-footer .brand{font-size:18px;color:var(--ink)}
-footer .links{display:flex;gap:22px;flex-wrap:wrap}
-footer a{text-decoration:none}
-footer a:hover{color:var(--ink)}
-
-/* MOTION: content is visible without JS; entrance only arms with .js */
-.js .rise{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.js .rise.in{opacity:1;transform:none}
-.js .hero h1,.js .hero .sub,.js .hero .cta{opacity:0;transform:translateY(18px);animation:up .9s var(--ease) forwards}
-.js .hero .sub{animation-delay:.12s}
-.js .hero .cta{animation-delay:.22s}
-.js .compare-wrap{opacity:0;transform:translateY(30px) scale(.985);animation:up 1.1s var(--ease) .32s forwards}
-@keyframes up{to{opacity:1;transform:none}}
-.bar.fast i{transform-origin:left;transform:scaleX(1)}
-.js .timeline:not(.in) .bar i{transform:scaleX(0)}
-.js .timeline .bar i{transition:transform 1.4s var(--ease)}
-.js .timeline .bar.fast i{transition-delay:.5s;transition-duration:.6s}
-@media(prefers-reduced-motion:reduce){
-  .js .rise,.js .hero h1,.js .hero .sub,.js .hero .cta,.js .compare-wrap{opacity:1;transform:none;animation:none;transition:none}
-  .js .timeline .bar i{transform:none;transition:none}
-}
-</style>
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
@@ -225,6 +25,7 @@ footer a:hover{color:var(--ink)}
       <a href="#saat">Mitä saat</a>
       <a href="#kenelle">Kenelle</a>
       <a href="#luotettavuus">Luotettavuus</a>
+      <a href="ohje.html">Käyttöohje</a>
       <a href="#kysymykset">Kysymykset</a>
       <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
     </div>
@@ -243,15 +44,15 @@ footer a:hover{color:var(--ink)}
     </div>
 
     <div class="compare-wrap">
+      <p class="compare-intro">Sama liiketila kahdesti. <b>Vasemmalla</b> se, mitä laserkeilain tallentaa. <b>Oikealla</b> malli, jonka Ordinate siitä tekee.</p>
       <div class="compare" id="compare">
         <img src="img/after.webp" alt="Ordinaten tekemä malli samasta liiketilasta: ulkoseinät, takahuoneiden väliseinät ja pilarit. Hyllyt ja tavara on poistettu." width="1600" height="1000" loading="eager" decoding="async">
         <img class="top" src="img/before.webp" alt="Laserkeilattu pistepilvi liiketilasta: seinien lisäksi mukana hyllyrivit ja kaikki muu mitä tilassa oli." width="1600" height="1000" loading="eager" decoding="async">
-        <span class="lbl l">Keilain näkee</span>
-        <span class="lbl r">Ordinate mallintaa</span>
-        <div class="handle"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
-        <input type="range" min="0" max="100" value="50" aria-label="Vertaa pistepilveä ja mallia: siirrä vasemmalle nähdäksesi mallin, oikealle nähdäksesi pistepilven">
+        <div class="tag-side l"><span class="k">Ennen</span><span class="t">Laserkeilaus</span><span class="d">Miljoonia pisteitä. Hyllyt, tavara ja kaikki mukana.</span></div>
+        <div class="tag-side r"><span class="k">Jälkeen</span><span class="t">Ordinaten malli</span><span class="d">Seinät ja pilarit valmiina suunnitteluohjelmaan.</span></div>
+        <div class="handle"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span><span class="drag-hint">Vedä</span></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Vertailu: siirrä oikealle nähdäksesi enemmän pistepilveä, vasemmalle nähdäksesi enemmän mallia">
       </div>
-      <div class="compare-cap"><span><b>Vedä</b> nähdäksesi eron: vasemmalla keilaus, oikealla valmis malli.</span><span>Liiketila 72 × 48 m · hyllyt ja tavara suodatettu pois automaattisesti</span></div>
     </div>
   </div>
 </header>
@@ -266,7 +67,7 @@ footer a:hover{color:var(--ink)}
       <p class="lead">Ordinate tekee sen jäljityksen puolestasi. Se erottaa rakenteen tavarasta, mittaa jokaisen seinän suoraan pisteistä ja kirjoittaa tuloksen malliksi, jonka kanssa arkkitehti voi heti jatkaa.</p>
       <div class="timeline rise" id="timeline" aria-label="Aikavertailu">
         <div class="trow"><div class="who">Käsin</div><div class="bar slow"><i></i></div><div class="t">Seinä kerrallaan pistepilven päälle, useita työpäiviä isossa kohteessa</div></div>
-        <div class="trow"><div class="who">Ordinatella</div><div class="bar fast"><i></i></div><div class="t">Koulun 37 keilauksen kellari: <b style="color:var(--ink);font-weight:500">25 minuuttia</b> tavallisella työasemalla</div></div>
+        <div class="trow"><div class="who">Ordinatella</div><div class="bar fast"><i></i></div><div class="t">Iso kohde, 37 keilausta: <b style="color:var(--ink);font-weight:500">noin 25 minuuttia</b> tavallisella työasemalla</div></div>
       </div>
     </div>
   </div>
@@ -338,7 +139,7 @@ footer a:hover{color:var(--ink)}
       <aside class="honest rise">
         <h3>Mitä Ordinate ei tee</h3>
         <p>Se ei mallinna sitä mitä keilain ei nähnyt. Jos seinä on hyllyn tai putkiston takana eikä mikään keilaus osu siihen, sitä ei ole datassa. Silloin apu on lisäkeilaus, ei ohjelma.</p>
-        <p>Isoissa, täyteen ahdetuissa tiloissa (esimerkiksi putkikellarit) osa seinistä voi jäädä löytymättä. Kehitämme juuri tätä jatkuvasti, ja jokainen versio mitataan samoja aineistoja vasten ennen julkaisua.</p>
+        <p>Isoissa, täyteen ahdetuissa tiloissa (esimerkiksi putkia täynnä olevat kellarit) osa seinistä voi jäädä löytymättä. Kehitämme juuri tätä jatkuvasti, ja jokainen versio mitataan samoja aineistoja vasten ennen julkaisua.</p>
       </aside>
     </div>
   </div>
@@ -360,10 +161,10 @@ footer a:hover{color:var(--ink)}
   <div class="wrap faq">
     <h2 class="h2">Kysymyksiä</h2>
     <div style="margin-top:clamp(32px,5vw,48px)">
-      <details><summary>Tarvitsenko erityisosaamista?</summary><div class="body">Et. Asennat ohjelman kuten minkä tahansa Windows-sovelluksen, vedät keilaukset ikkunaan ja painat <strong>Konvertoi</strong>. Oletusasetukset toimivat useimmissa kohteissa sellaisenaan.</div></details>
+      <details><summary>Tarvitsenko erityisosaamista?</summary><div class="body">Et. Asennat ohjelman kuten minkä tahansa Windows-sovelluksen, vedät keilaukset ikkunaan ja painat <strong>Konvertoi</strong>. Oletusasetukset toimivat useimmissa kohteissa sellaisenaan. Vaihe vaiheelta: <a href="ohje.html" style="color:var(--accent)">käyttöohje</a>.</div></details>
       <details><summary>Voiko mallia muokata Revitissä tai ArchiCADissa?</summary><div class="body">Voi. Seinät, laatat, pilarit, palkit, ovet ja ikkunat ovat oikeita rakennusosia yksinkertaisella geometrialla, joten Revitin <strong>Open IFC</strong> muuttaa ne natiiveiksi elementeiksi, joita voi siirtää ja muokata. <strong>Link IFC</strong> tuo mallin taustaksi omalle mallinnukselle. Sama pätee ArchiCADiin.</div></details>
       <details><summary>Asettuuko malli pistepilven päälle?</summary><div class="body">Kyllä. Malli kirjoitetaan keilauksen oikeisiin koordinaatteihin, joten se osuu pistepilven päälle esimerkiksi Cintoossa ilman erillistä kohdistusta. Oletuskoordinaatisto on Suomen ETRS-TM35FIN, ja muut voi valita asetuksista.</div></details>
-      <details><summary>Kuinka kauan muunnos kestää?</summary><div class="body">Asunto muutamassa minuutissa. Iso kohde, esimerkiksi 37 keilauksen koulukellari, noin puolessa tunnissa tavallisella työasemalla. Ohjelma näyttää ajon aikana, missä vaiheessa se on ja kauanko on kulunut.</div></details>
+      <details><summary>Kuinka kauan muunnos kestää?</summary><div class="body">Asunto muutamassa minuutissa. Iso kohde, esimerkiksi 37 keilausta, noin puolessa tunnissa tavallisella työasemalla. Ohjelma näyttää ajon aikana, missä vaiheessa se on ja kauanko on kulunut.</div></details>
       <details><summary>Mitä koneelta vaaditaan?</summary><div class="body">Windows 10 tai 11 ja tavallinen työasema. Isot kohteet hyötyvät reilusta muistista (32 Gt tai enemmän) ja siitä, että keilaukset ovat koneen omalla levyllä eivätkä muistitikulla.</div></details>
       <details><summary>Miten ohjelma päivittyy?</summary><div class="body">Itsestään. Kun uusi versio julkaistaan, ohjelma tarjoaa sitä käynnistyksessä ja asentaa sen, kun suljet sovelluksen.</div></details>
       <details><summary>Jokin meni pieleen. Mistä apua?</summary><div class="body">Paina ohjelmassa <strong>Lähetä diagnostiikka</strong>. Se kokoaa ajojen tekniset lokit ja avaa sähköpostiluonnoksen. Raportissa ei ole geometriaa eikä koordinaatteja, joten sen voi lähettää luottamuksellisestakin kohteesta.</div></details>
@@ -377,7 +178,7 @@ footer a:hover{color:var(--ink)}
     <p class="lead">Kokeile omalla keilauksellasi. Asennus vie minuutin, eikä se tarvitse pääkäyttäjäoikeuksia.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Lataa Windowsille</a>
-      <a class="btn btn-ghost" href="https://github.com/Mcrauli/Ordinate-web/releases">Kaikki versiot</a>
+      <a class="btn btn-ghost" href="ohje.html">Lue käyttöohje</a>
     </div>
   </div>
 </section>
@@ -386,7 +187,7 @@ footer a:hover{color:var(--ink)}
 <footer>
   <div class="wrap">
     <a class="brand" href="#top"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
-    <div class="links"><a href="#miten">Miten toimii</a><a href="#luotettavuus">Luotettavuus</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
+    <div class="links"><a href="#miten">Miten toimii</a><a href="#luotettavuus">Luotettavuus</a><a href="ohje.html">Käyttöohje</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
   </div>
 </footer>
 
@@ -402,7 +203,7 @@ document.querySelectorAll('.rise, .timeline').forEach((el, i) => {
 
 const cmp = document.getElementById('compare'), rng = cmp.querySelector('input');
 const set = v => cmp.style.setProperty('--pos', v + '%');
-rng.addEventListener('input', () => set(rng.value));
+rng.addEventListener('input', () => { set(rng.value); cmp.classList.add('used'); });
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let t0 = null, done = false;
   const hint = ts => {

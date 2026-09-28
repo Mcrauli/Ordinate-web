@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Käyttöohje · Ordinate</title>
+<meta name="description" content="Ordinaten käyttöohje: asennus, ensimmäinen muunnos, asetukset, mallin tarkastus ja korjaus, tulostiedostot ja vianetsintä.">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
+.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em}
+.doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
+.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,120px)}
+.toc{position:sticky;top:96px;align-self:start;font-size:15px}
+.toc b{display:block;font-family:"Bricolage Grotesque";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
+.toc ol{list-style:none;border-left:1px solid var(--line)}
+.toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent)}
+.doc article{max-width:74ch}
+.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
+.doc h2:first-child{margin-top:0}
+.doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
+.doc p,.doc li{color:var(--muted);font-size:17px}
+.doc p{margin-top:14px}
+.doc strong,.doc b{color:var(--ink);font-weight:500}
+.doc ol.num{list-style:none;counter-reset:n;margin-top:18px}
+.doc ol.num>li{counter-increment:n;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
+.doc ol.num>li:last-child{border-bottom:1px solid var(--line)}
+.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:15px;color:var(--bg);background:var(--accent)}
+.doc ul.dots{margin-top:14px;padding-left:20px}
+.doc ul.dots li{margin-top:6px}
+.doc ul.dots li::marker{color:var(--accent)}
+.ui{font-family:"Spline Sans";font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:1px 7px;font-size:.92em;white-space:nowrap}
+.file{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+.note{margin-top:20px;border:1px solid var(--line-2);background:var(--panel);border-radius:11px;padding:16px 18px;font-size:16px;color:var(--muted)}
+.note b{color:var(--ink)}
+.set{margin-top:20px;border-top:1px solid var(--line)}
+.set>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.set dt{font-family:"Bricolage Grotesque";font-weight:600;color:var(--ink);font-size:17px}
+.set dd{color:var(--muted);font-size:16.5px}
+.set dd .rec{display:block;margin-top:6px;color:var(--ink);font-size:15.5px}
+.set dd .rec::before{content:"Suositus: ";color:var(--accent);font-weight:600}
+@media(max-width:900px){.doc{grid-template-columns:1fr}.toc{position:static;display:none}}
+@media(max-width:560px){.set>div{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Ordinate, etusivu"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#miten">Miten toimii</a>
+      <a href="index.html#saat">Mitä saat</a>
+      <a href="ohje.html" aria-current="page" style="color:var(--ink)">Käyttöohje</a>
+      <a href="index.html#kysymykset">Kysymykset</a>
+      <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
+    </div>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</nav>
+
+<main>
+<header class="doc-head">
+  <div class="wrap">
+    <h1>Käyttöohje</h1>
+    <p>Kaikki mitä tarvitset keilauksesta valmiiseen malliin: asennus, ensimmäinen muunnos, asetukset, mallin tarkastaminen ja korjaaminen sekä mitä tehdä kun jokin ei toimi.</p>
+  </div>
+</header>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Sisällys">
+    <b>Sisällys</b>
+    <ol>
+      <li><a href="#asennus">Asennus</a></li>
+      <li><a href="#ensimmainen">Ensimmäinen muunnos</a></li>
+      <li><a href="#asetukset">Asetukset</a></li>
+      <li><a href="#tarkastus">Mallin tarkastus</a></li>
+      <li><a href="#korjaus">Mallin korjaus</a></li>
+      <li><a href="#tiedostot">Tulostiedostot</a></li>
+      <li><a href="#suunnitteluohjelmassa">Suunnitteluohjelmassa</a></li>
+      <li><a href="#vinkit">Vinkit hyvään tulokseen</a></li>
+      <li><a href="#ongelmat">Kun jokin ei toimi</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <h2 id="asennus">Asennus</h2>
+    <ol class="num">
+      <li>Lataa <a class="file" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Ordinate-Setup.exe</a> ja käynnistä se.</li>
+      <li>Jos Windows näyttää ilmoituksen <b>Windows suojasi tietokoneesi</b>, valitse <span class="ui">Lisätietoja</span> ja sitten <span class="ui">Suorita silti</span>. Ilmoitus tulee, koska ohjelma on uusi eikä Windows vielä tunnista sitä.</li>
+      <li>Hyväksy asennus. Ordinate asentuu vain omalle käyttäjällesi, joten pääkäyttäjän oikeuksia ei tarvita.</li>
+      <li>Käynnistä Ordinate Käynnistä-valikosta tai työpöydän kuvakkeesta.</li>
+    </ol>
+    <p><b>Päivitykset tulevat itsestään.</b> Kun uusi versio on saatavilla, Ordinate kertoo sen käynnistyessään. Valitse <span class="ui">Päivitä nyt</span>, ja päivitys asentuu kun suljet ohjelman.</p>
+    <p>Vaatimukset: Windows 10 tai 11. Isot kohteet (kymmeniä keilauksia) hyötyvät vähintään 32 gigatavun muistista.</p>
+
+    <h2 id="ensimmainen">Ensimmäinen muunnos</h2>
+    <ol class="num">
+      <li><b>Tuo keilaukset.</b> Raahaa keilaustiedostot tai koko kansio ikkunan vasemmalle puolelle kohtaan <span class="ui">Pistepilvi</span>. Kelpaavat muodot ovat E57, LAS, LAZ, PTS ja PLY. Saman kohteen erilliset keilaukset tuodaan kerralla, ja Ordinate yhdistää ne.</li>
+      <li><b>Tarkista tuloskansio.</b> Ordinate ehdottaa <span class="file">output</span>-kansiota keilausten viereen. Voit vaihtaa sen <span class="ui">…</span>-painikkeesta.</li>
+      <li><b>Paina <span class="ui">Konvertoi</span>.</b> Oletusasetukset sopivat useimpiin kohteisiin. Ikkunan alareuna näyttää, missä vaiheessa muunnos on ja kauanko se on kestänyt.</li>
+      <li><b>Katso tulos.</b> Kun muunnos valmistuu, malli piirtyy <span class="ui">Pohja</span>-välilehdelle ja valmis IFC-tiedosto on tuloskansiossa. <span class="ui">Loki</span>-välilehdellä näet mitä ajon aikana tapahtui ja mitkä vaiheet kestivät pisimpään.</li>
+    </ol>
+    <p>Muunnoksen kesto riippuu kohteen koosta: asunto valmistuu muutamassa minuutissa, 37 keilauksen kohde noin puolessa tunnissa. Voit käyttää konetta muuhun sillä aikaa.</p>
+
+    <h2 id="asetukset">Asetukset</h2>
+    <p>Asetukset löytyvät ikkunan vasemmasta reunasta. Oletukset on valittu niin, että voit painaa Konvertoi koskematta niihin.</p>
+    <dl class="set">
+      <div><dt>Voxel-koko</dt><dd>Kuinka tiheästi keilaus luetaan. <b>Automaattinen</b> valitsee kohteen koon mukaan: pienessä tilassa tarkemmin, isossa kevyemmin, jotta muisti riittää.<span class="rec">pidä Automaattinen päällä.</span></dd></div>
+      <div><dt>Rekisteröinti</dt><dd><b>ICP-hienorekisteröinti</b> kohdistaa toisiinsa keilauksia, joita ei ole vielä kohdistettu keilainohjelmassa. Jos keilaukset on jo yhdistetty, se vain pidentää ajoa.<span class="rec">jätä pois, ellei keilauksia ole kohdistettu.</span></dd></div>
+      <div><dt>Tarkkuus</dt><dd><b>Tarkkuusraportti</b> vertaa valmista mallia takaisin keilaukseen ja kirjoittaa raportin siitä, kuinka hyvin kukin seinä ja laatta osuu pisteisiin. Ei muuta itse mallia.<span class="rec">pidä päällä.</span></dd></div>
+      <div><dt>Kalustesuodatus</dt><dd>Tekoäly poistaa kalusteet, tavaran, putket ja muun irtaimen ennen kuin rakenteita etsitään. Parantaa tulosta etenkin kalustetuissa ja täysissä tiloissa.<span class="rec">pidä päällä.</span></dd></div>
+      <div><dt>Kohdetyyppi</dt><dd><b>Asunto / toimisto</b> tai <b>Liiketila / työmaa</b>. Kertoo ohjelmalle, millaisesta kohteesta on kyse.<span class="rec">valitse kohteen mukaan; oletus toimii useimmiten.</span></dd></div>
+      <div><dt>Koordinaatisto</dt><dd>Missä koordinaatistossa keilaukset ovat. Malli kirjoitetaan aina keilauksen oikeaan sijaintiin; tämä valinta kertoo suunnitteluohjelmalle, minkä järjestelmän koordinaateista on kyse. Oletus on Suomessa yleisin <b>ETRS-TM35FIN</b>.<span class="rec">pidä oletus, ellei keilauksia ole tehty muussa järjestelmässä. Tieto löytyy yleensä keilaajalta.</span></dd></div>
+      <div><dt>Export</dt><dd><b>IFC (Revit / ArchiCAD)</b> kirjoittaa mallin tiedostoksi, jonka suunnitteluohjelmat avaavat.<span class="rec">pidä päällä.</span></dd></div>
+    </dl>
+
+    <h2 id="tarkastus">Mallin tarkastus</h2>
+    <h3>Pohja</h3>
+    <p><span class="ui">Pohja</span>-välilehti näyttää mallin ylhäältä. Jos rakennuksessa on useampi kerros, valitse kerros yläreunan valikosta. Pohjan vieressä on <span class="ui">Tarkistus</span>-lista, johon on nostettu ensin ne rakennusosat, joista ohjelma on vähiten varma.</p>
+    <h3>3D-tarkastus</h3>
+    <p>Paina <span class="ui">Tarkasta malli 3D</span> tai avaa <span class="ui">3D-tarkastus</span>-välilehti ja paina <span class="ui">Näytä pistepilvi</span>. Malli piirretään alkuperäisen keilauksen päälle, joten näet suoraan, osuuko se oikeaan kohtaan.</p>
+    <ul class="dots">
+      <li><b>Liikkuminen:</b> käännä näkymää hiirellä, liiku W-, A-, S- ja D-näppäimillä, nouse ja laskeudu Q- ja E-näppäimillä. Shift nopeuttaa.</li>
+      <li><b>Näkymä: Väri</b> näyttää keilauksen sellaisenaan.</li>
+      <li><b>Näkymä: Residuaali</b> värjää punaiseksi ne pisteet, joita mikään mallin osa ei selitä. Punainen seinän muotoinen alue kertoo seinästä, joka puuttuu mallista.</li>
+      <li><b>Näkymä: Vain puuttuvat</b> näyttää pelkät selittämättömät pisteet. Nopein tapa löytää puutteet.</li>
+      <li><b>Täyteys</b> säätää, kuinka paljon pisteitä piirretään. Pienennä sitä, jos näkymä on hidas.</li>
+    </ul>
+
+    <h2 id="korjaus">Mallin korjaus</h2>
+    <p>Käy <span class="ui">Tarkistus</span>-lista läpi ylhäältä alas. Valittu rakennusosa korostuu pohjassa.</p>
+    <ul class="dots">
+      <li><span class="ui">Hyväksy</span>, jos osa on oikein.</li>
+      <li><span class="ui">Poista</span>, jos osa ei ole oikeasti seinä, ovi tai pilari (esimerkiksi hyllyn pääty tai putkikotelo).</li>
+    </ul>
+    <p><b>Ohjelma oppii korjauksistasi.</b> Kun olet tehnyt noin 20 päätöstä, lista järjestyy sen mukaan, mikä juuri tässä rakennuksessa erottaa oikean seinän väärästä, ja todennäköisimmät virheet nousevat kärkeen. Korjaukset tallentuvat tuloskansioon ja säilyvät, vaikka suljet ohjelman.</p>
+    <p>Kun olet valmis, paina <span class="ui">Kirjoita IFC uudelleen</span>. IFC-tiedosto päivittyy korjausten mukaiseksi.</p>
+
+    <h2 id="tiedostot">Tulostiedostot</h2>
+    <p>Kaikki tallentuu valitsemaasi tuloskansioon. <span class="ui">Avaa kansio</span> avaa sen suoraan.</p>
+    <dl class="set">
+      <div><dt><span class="file">building.ifc</span></dt><dd>Koko rakennus kaikkine kerroksineen yhdessä tiedostossa. Tämä on yleensä se tiedosto, jonka avaat suunnitteluohjelmassa.</dd></div>
+      <div><dt><span class="file">floor_00/model.ifc</span></dt><dd>Yksittäisen kerroksen malli. Kerrokset numeroidaan alimmasta alkaen.</dd></div>
+      <div><dt><span class="file">qa_report.txt</span></dt><dd>Tarkkuusraportti: kuinka tarkasti malli osuu keilaukseen millimetreinä, ja lista kohdista jotka kannattaa tarkistaa. Katso osio <b>Pintatarkkuus</b>; se kertoo mallin todellisen tarkkuuden.</dd></div>
+      <div><dt><span class="file">diagnostics.txt</span></dt><dd>Ajon tekniset tiedot tukea varten. Ei sisällä geometriaa eikä koordinaatteja.</dd></div>
+    </dl>
+
+    <h2 id="suunnitteluohjelmassa">Suunnitteluohjelmassa</h2>
+    <p>Malli on standardimuotoista IFC:tä ja avautuu mm. Revitissä, ArchiCADissa, Solibrissa ja Trimble Connectissa.</p>
+    <ul class="dots">
+      <li><b>Revit, Link IFC:</b> malli tulee taustaksi, jonka päälle mallinnat omat osasi. Tarkin tapa.</li>
+      <li><b>Revit, Open IFC:</b> seinät, laatat, pilarit, ovet ja ikkunat muuttuvat Revitin omiksi, muokattaviksi elementeiksi.</li>
+      <li><b>ArchiCAD:</b> avaa tai sijoita IFC tavalliseen tapaan; osat tulevat oikeina rakennusosina.</li>
+      <li><b>Pistepilven päälle:</b> malli on keilauksen oikeissa koordinaateissa, joten esimerkiksi Cintoossa se asettuu pistepilven päälle ilman erillistä kohdistusta.</li>
+    </ul>
+
+    <h2 id="vinkit">Vinkit hyvään tulokseen</h2>
+    <ul class="dots">
+      <li><b>Kopioi keilaukset koneen omalle levylle.</b> Muistitikulta tai verkkolevyltä lukeminen voi hidastaa muunnosta selvästi.</li>
+      <li><b>Tuo saman kohteen kaikki keilaukset kerralla.</b> Mitä useammasta suunnasta seinä on keilattu, sitä varmemmin se löytyy.</li>
+      <li><b>Tuo vain yhteen kohteeseen kuuluvat keilaukset.</b> Jos mukana on muualta keilattu tiedosto, ohjelma varoittaa pilven hajoavan erillisiin alueisiin, ja tulos heikkenee.</li>
+      <li><b>Mitä ei ole keilattu, sitä ei voi mallintaa.</b> Hyllyn tai putkiston taakse jäävä seinä tarvitsee keilausaseman, joka näkee sen.</li>
+    </ul>
+
+    <h2 id="ongelmat">Kun jokin ei toimi</h2>
+    <h3>Muunnos kestää kauan</h3>
+    <p>Iso kohde vie aikaa, ja edistyminen näkyy ikkunan alareunassa. Jos keilaukset ovat muistitikulla tai verkkolevyllä, kopioi ne ensin koneelle; ohjelma myös varoittaa hitaasta lukunopeudesta.</p>
+    <h3>Varoitus: pistepilvi hajoaa erillisiin alueisiin</h3>
+    <p>Mukana on keilauksia, jotka eivät limity keskenään. Tarkista, että kaikki tiedostot kuuluvat samaan kohteeseen, tai aja eri kohteet erikseen.</p>
+    <h3>Mallista puuttuu seiniä</h3>
+    <p>Avaa <span class="ui">3D-tarkastus</span> ja valitse näkymä <b>Vain puuttuvat</b>. Jos puuttuvan seinän kohdalla on vähän pisteitä, seinä on jäänyt keilauksessa katveeseen. Jos pisteitä on paljon, lähetä diagnostiikka, niin voimme parantaa tunnistusta.</p>
+    <h3>Tarvitsen apua</h3>
+    <p>Paina ohjelmassa <span class="ui">Lähetä diagnostiikka kehittäjälle</span>. Se kokoaa ajojen tekniset tiedot ja avaa sähköpostiluonnoksen. Raportissa ei ole geometriaa eikä koordinaatteja, joten sen voi lähettää luottamuksellisestakin kohteesta. Kerro samalla lyhyesti mikä meni pieleen.</p>
+    <div class="note"><b>Keilaukset pysyvät koneellasi.</b> Ordinate tekee kaiken laskennan paikallisesti eikä lähetä pistepilviä tai malleja minnekään.</div>
+  </article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
+  </div>
+</footer>
+
+<script>
+const tog = document.querySelector('.navtoggle'), links = document.getElementById('navlinks');
+tog.addEventListener('click', () => { const o = links.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });
+const tocLinks = [...document.querySelectorAll('.toc a')];
+const secs = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-20% 0px -70% 0px'});
+secs.forEach(s => s && spy.observe(s));
+</script>
+</body>
+</html>
