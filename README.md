@@ -2,7 +2,7 @@
 
 Laserkeilattu pistepilvi sisään, muokattava IFC4-arkkitehtimalli ulos.
 
-**[Lataa Windowsille](https://github.com/Mcrauli/scan2bim-web/releases/latest/download/Ordinate-Setup.exe)**  ·  **[Verkkosivu](https://rekolalauri.fi/scan2bim-web/)**  ·  [Kaikki versiot](https://github.com/Mcrauli/scan2bim-web/releases)
+**[Lataa Windowsille](https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe)**  ·  **[Verkkosivu](https://rekolalauri.fi/Ordinate-web/)**  ·  [Kaikki versiot](https://github.com/Mcrauli/Ordinate-web/releases)
 
 ## Mitä se tekee
 
@@ -53,4 +53,4 @@ Sovellus päivittää itsensä tästä reposta.
 ## Tästä reposta
 
 Julkinen jakelurepo: verkkosivu (GitHub Pages) ja Windows-asennusohjelma
-Releases-välilehdellä. Lähdekoodi on yksityisessä `Mcrauli/scan2bim`-repossa.
+Releases-välilehdellä. Lähdekoodi on yksityisessä `Mcrauli/Ordinate`-repossa.

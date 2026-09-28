@@ -1,2 +1,3 @@
 *.exe
 *.exe.sha256
+.impeccable/
