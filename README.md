@@ -1,13 +1,13 @@
-# scan2bim
+# Ordinate
 
 Laserkeilattu pistepilvi sisään, muokattava IFC4-arkkitehtimalli ulos.
 
-**[Lataa Windowsille](https://github.com/Mcrauli/scan2bim-web/releases/latest/download/scan2bim-Setup.exe)**  ·  **[Verkkosivu](https://rekolalauri.fi/scan2bim-web/)**  ·  [Kaikki versiot](https://github.com/Mcrauli/scan2bim-web/releases)
+**[Lataa Windowsille](https://github.com/Mcrauli/scan2bim-web/releases/latest/download/Ordinate-Setup.exe)**  ·  **[Verkkosivu](https://rekolalauri.fi/scan2bim-web/)**  ·  [Kaikki versiot](https://github.com/Mcrauli/scan2bim-web/releases)
 
 ## Mitä se tekee
 
 Keilain antaa kymmeniä miljoonia pisteitä: kaiken mitä tilassa sattui olemaan.
-Mallintaja piirtää niiden päälle seinät käsin. scan2bim tekee sen osan
+Mallintaja piirtää niiden päälle seinät käsin. Ordinate tekee sen osan
 automaattisesti ja **tarkistaa oman työnsä pistepilveä vasten.**
 
 1. **Lataus.** E57, LAS/LAZ, PTS/XYZ, PLY/PCD — useampi tiedosto kerralla.
