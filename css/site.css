@@ -72,13 +72,13 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;
   border:1px solid var(--line-2);background:var(--bg-2);
   --pos:50%;
-  box-shadow:0 40px 120px -60px rgba(57,208,216,.35);
+  box-shadow:0 40px 100px -50px rgba(0,0,0,.65);
   touch-action:pan-y;user-select:none;-webkit-user-select:none;
 }
 .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .compare .top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 .compare .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent);transform:translateX(-1px);pointer-events:none}
-.compare .knob{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(198,242,78,.16)}
+.compare .knob{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(10,14,20,.55),0 4px 14px rgba(0,0,0,.45)}
 .compare .knob svg{width:22px;height:22px;color:var(--bg)}
 .compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
 .compare-intro{font-size:clamp(16px,1.8vw,18px);color:var(--muted);margin-bottom:16px;max-width:70ch}
@@ -91,7 +91,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .tag-side.r .k{color:var(--accent)}
 .tag-side .t{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(17px,2vw,22px);letter-spacing:-.015em;line-height:1.15}
 .tag-side .d{font-size:14px;color:var(--muted);line-height:1.45}
-.drag-hint{position:absolute;top:calc(50% + 34px);left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);padding:3px 10px;border-radius:100px;white-space:nowrap;transition:opacity .4s}
+.drag-hint{position:absolute;top:calc(50% + 34px);left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);padding:5px 12px;border-radius:100px;white-space:nowrap;transition:opacity .4s}
 .compare.used .drag-hint{opacity:0}
 @media(max-width:620px){.tag-side .d{display:none}.tag-side{bottom:12px;padding:8px 10px}.tag-side.l{left:10px}.tag-side.r{right:10px}}
 
@@ -125,7 +125,7 @@ section{padding:clamp(80px,11vw,140px) 0}
 .step h3{font-size:clamp(23px,2.4vw,27px);font-weight:600;letter-spacing:-.02em}
 .step p{margin-top:12px;color:var(--muted);font-size:16.5px;line-height:1.65}
 .files{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.files span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent-2);border:1px solid var(--line-2);border-radius:7px;padding:4px 9px}
+.files span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent-2);border:1px solid var(--line-2);border-radius:7px;padding:6px 11px}
 @media(max-width:860px){.steps{grid-template-columns:1fr;gap:48px}}
 
 /* WHAT YOU GET: image + defined list */
@@ -190,8 +190,8 @@ footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
 
 /* MOTION: content is visible without JS; entrance only arms with .js */
-.js .rise{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.js .rise.in{opacity:1;transform:none}
+.js .rise{transform:translateY(22px);transition:transform .9s var(--ease)}
+.js .rise.in{transform:none}
 .js .hero h1,.js .hero .sub,.js .hero .cta{opacity:0;transform:translateY(18px);animation:up .9s var(--ease) forwards}
 .js .hero .sub{animation-delay:.12s}
 .js .hero .cta{animation-delay:.22s}
