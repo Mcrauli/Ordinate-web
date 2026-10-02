@@ -15,14 +15,14 @@
 .doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
 .doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em}
 .doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
-.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,120px)}
+.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(80px,10vw,120px)}
 .toc{position:sticky;top:96px;align-self:start;font-size:15px}
 .toc b{display:block;font-family:"Bricolage Grotesque";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
 .toc ol{list-style:none;border-left:1px solid var(--line)}
 .toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
 .toc a:hover{color:var(--ink)}
 .toc a.on{color:var(--accent);border-left-color:var(--accent)}
-.doc article{max-width:74ch}
+.doc article{max-width:74ch;min-width:0}
 .doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
 .doc h2:first-child{margin-top:0}
 .doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
@@ -59,6 +59,7 @@
       <a href="index.html#miten">Miten toimii</a>
       <a href="index.html#saat">Mitä saat</a>
       <a href="ohje.html" aria-current="page" style="color:var(--ink)">Käyttöohje</a>
+      <a href="tietoturva.html">Tietoturva</a>
       <a href="index.html#kysymykset">Kysymykset</a>
       <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
     </div>
@@ -94,11 +95,11 @@
     <h2 id="asennus">Asennus</h2>
     <ol class="num">
       <li>Lataa <a class="file" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Ordinate-Setup.exe</a> ja käynnistä se.</li>
-      <li>Jos Windows näyttää ilmoituksen <b>Windows suojasi tietokoneesi</b>, valitse <span class="ui">Lisätietoja</span> ja sitten <span class="ui">Suorita silti</span>. Ilmoitus tulee, koska ohjelma on uusi eikä Windows vielä tunnista sitä.</li>
+      <li>Jos Windows näyttää ilmoituksen <b>Windows suojasi tietokoneesi</b>, valitse <span class="ui">Lisätietoja</span> ja sitten <span class="ui">Suorita silti</span>. Ilmoitus tulee, koska ohjelmaa ei vielä ole allekirjoitettu Windowsin koodivarmenteella. Latauksen aitouden voi tarkistaa, katso <a href="tietoturva.html#aitous">Tietoturva</a>.</li>
       <li>Hyväksy asennus. Ordinate asentuu vain omalle käyttäjällesi, joten pääkäyttäjän oikeuksia ei tarvita.</li>
       <li>Käynnistä Ordinate Käynnistä-valikosta tai työpöydän kuvakkeesta.</li>
     </ol>
-    <p><b>Päivitykset tulevat itsestään.</b> Kun uusi versio on saatavilla, Ordinate kertoo sen käynnistyessään. Valitse <span class="ui">Päivitä nyt</span>, ja päivitys asentuu kun suljet ohjelman.</p>
+    <p><b>Päivitykset.</b> Kun uusi versio on saatavilla, Ordinate kertoo sen käynnistyessään. Valitse <span class="ui">Päivitä nyt</span>, ja päivitys asentuu kun suljet ohjelman. Ohjelma asentaa vain julkaisijan allekirjoittaman päivityksen. Ylläpitäjä voi kytkeä päivitystarkistuksen pois, katso <a href="tietoturva.html#paivitykset">Tietoturva</a>.</p>
     <p>Vaatimukset: Windows 10 tai 11. Isot kohteet (kymmeniä keilauksia) hyötyvät vähintään 32 gigatavun muistista.</p>
 
     <h2 id="ensimmainen">Ensimmäinen muunnos</h2>
@@ -178,7 +179,7 @@
     <h3>Mallista puuttuu seiniä</h3>
     <p>Avaa <span class="ui">3D-tarkastus</span> ja valitse näkymä <b>Vain puuttuvat</b>. Jos puuttuvan seinän kohdalla on vähän pisteitä, seinä on jäänyt keilauksessa katveeseen. Jos pisteitä on paljon, lähetä diagnostiikka, niin voimme parantaa tunnistusta.</p>
     <h3>Tarvitsen apua</h3>
-    <p>Paina ohjelmassa <span class="ui">Lähetä diagnostiikka kehittäjälle</span>. Se kokoaa ajojen tekniset tiedot ja avaa sähköpostiluonnoksen. Raportissa ei ole geometriaa eikä koordinaatteja, joten sen voi lähettää luottamuksellisestakin kohteesta. Kerro samalla lyhyesti mikä meni pieleen.</p>
+    <p>Paina ohjelmassa <span class="ui">Lähetä diagnostiikka kehittäjälle</span>. Se kokoaa ajojen tekniset tiedot ja avaa sähköpostiluonnoksen. Raportissa ei ole geometriaa eikä koordinaatteja, joten sen voi lähettää luottamuksellisestakin kohteesta. Syötetiedostojen nimet ja koneen tiedot ovat mukana, ja voit lukea tiedoston ennen lähettämistä. Kerro samalla lyhyesti mikä meni pieleen.</p>
     <div class="note"><b>Keilaukset pysyvät koneellasi.</b> Ordinate tekee kaiken laskennan paikallisesti eikä lähetä pistepilviä tai malleja minnekään.</div>
   </article>
 </div>
@@ -187,7 +188,7 @@
 <footer>
   <div class="wrap">
     <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
-    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
   </div>
 </footer>
 

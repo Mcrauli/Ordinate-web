@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tietoturva · Ordinate</title>
+<meta name="description" content="Mitä Ordinate tekee koneella ja verkossa: oikeudet, tiedostot, verkkoyhteydet, allekirjoitetut päivitykset ja latauksen aitouden tarkistus.">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
+.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em}
+.doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
+.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(80px,10vw,120px)}
+.toc{position:sticky;top:96px;align-self:start;font-size:15px}
+.toc b{display:block;font-family:"Bricolage Grotesque";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
+.toc ol{list-style:none;border-left:1px solid var(--line)}
+.toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent)}
+.doc article{max-width:74ch;min-width:0}
+.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
+.doc h2:first-child{margin-top:0}
+.doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
+.doc p,.doc li{color:var(--muted);font-size:17px}
+.doc p{margin-top:14px}
+.doc strong,.doc b{color:var(--ink);font-weight:500}
+.doc ol.num{list-style:none;counter-reset:n;margin-top:18px}
+.doc ol.num>li{counter-increment:n;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
+.doc ol.num>li:last-child{border-bottom:1px solid var(--line)}
+.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:15px;color:var(--bg);background:var(--accent)}
+.doc ul.dots{margin-top:14px;padding-left:20px}
+.doc ul.dots li{margin-top:6px}
+.doc ul.dots li::marker{color:var(--accent)}
+.ui{font-family:"Spline Sans";font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:1px 7px;font-size:.92em;white-space:nowrap}
+.file{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+.note{margin-top:20px;border:1px solid var(--line-2);background:var(--panel);border-radius:11px;padding:16px 18px;font-size:16px;color:var(--muted)}
+.note b{color:var(--ink)}
+.set{margin-top:20px;border-top:1px solid var(--line)}
+.set>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.set dt{font-family:"Bricolage Grotesque";font-weight:600;color:var(--ink);font-size:17px}
+.set dd{color:var(--muted);font-size:16.5px}
+.set dd .rec{display:block;margin-top:6px;color:var(--ink);font-size:15.5px}
+.set dd .rec::before{content:"Suositus: ";color:var(--accent);font-weight:600}
+@media(max-width:900px){.doc{grid-template-columns:1fr}.toc{position:static;display:none}}
+@media(max-width:560px){.set>div{grid-template-columns:1fr}}
+</style>
+<style>
+.doc table{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.doc th{color:var(--ink);font-family:"Bricolage Grotesque";font-weight:600;font-size:15px}
+.doc td:first-child{color:var(--ink)}
+.doc td{overflow-wrap:anywhere}
+.doc pre{margin-top:16px;background:var(--panel);border:1px solid var(--line-2);border-radius:11px;padding:14px 16px;overflow-x:auto}
+.doc pre code{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--accent-2);white-space:pre}
+.doc code{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+@media(max-width:560px){.doc table{font-size:15px}.doc th,.doc td{padding-right:8px}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Ordinate, etusivu"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#miten">Miten toimii</a>
+      <a href="index.html#saat">Mitä saat</a>
+      <a href="ohje.html">Käyttöohje</a>
+      <a href="tietoturva.html" aria-current="page" style="color:var(--ink)">Tietoturva</a>
+      <a href="index.html#kysymykset">Kysymykset</a>
+      <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
+    </div>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</nav>
+
+<main>
+<header class="doc-head">
+  <div class="wrap">
+    <h1>Tietoturva</h1>
+    <p>Mitä Ordinate tekee koneellasi ja verkossa, ja miten voit tarkistaa sen itse. Kaikki alla oleva on tarkistettu ohjelman lähdekoodista versiossa 0.9.37.</p>
+  </div>
+</header>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Sisällys">
+    <b>Sisällys</b>
+    <ol>
+      <li><a href="#lyhyesti">Lyhyesti</a></li>
+      <li><a href="#asennus">Asennus ja oikeudet</a></li>
+      <li><a href="#tiedostot">Tiedostot</a></li>
+      <li><a href="#verkko">Verkkoyhteydet</a></li>
+      <li><a href="#paivitykset">Päivitykset</a></li>
+      <li><a href="#aitous">Latauksen aitous</a></li>
+      <li><a href="#diagnostiikka">Diagnostiikka</a></li>
+      <li><a href="#rajoitukset">Rajoitukset</a></li>
+      <li><a href="#ilmoita">Ilmoita haavoittuvuudesta</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <h2 id="lyhyesti">Lyhyesti</h2>
+    <ul class="dots">
+      <li>Ordinate on tavallinen Windows-työpöytäohjelma. Se toimii <b>käyttäjän omilla oikeuksilla</b> eikä pyydä ylläpitäjän oikeuksia käytön aikana.</li>
+      <li>Pistepilviä, malleja tai muita tiedostojasi <b>ei lähetetä minnekään</b>. Kaikki laskenta tehdään omalla koneellasi.</li>
+      <li>Ohjelmassa ei ole käyttäjätiliä, lisenssipalvelinta eikä telemetriaa.</li>
+      <li>Ainoa verkkoyhteys on päivitysten tarkistus. Sen voi kytkeä pois, jolloin ohjelma ei ota verkkoon yhteyttä lainkaan.</li>
+      <li>Päivitykset ovat <b>julkaisijan allekirjoittamia</b>, ja ohjelma hylkää päivityksen, jonka allekirjoitus ei täsmää.</li>
+    </ul>
+
+    <h2 id="asennus">Asennus ja oikeudet</h2>
+    <p>Asennusohjelma asentaa oletuksena <b>vain nykyiselle käyttäjälle</b> kansioon <span class="file">%LOCALAPPDATA%\Programs\Ordinate</span> ilman ylläpitäjän oikeuksia. Koko koneelle asentaminen on mahdollista erikseen ylläpitäjänä.</p>
+    <p>Asennus luo pikakuvakkeet ja Windowsin tavalliset poistomerkinnät. Muita rekisterimuutoksia ei tehdä.</p>
+    <p>Ohjelmalla on samat oikeudet kuin millä tahansa itse käynnistämälläsi ohjelmalla. Halutessaan IT voi ajaa Ordinatea erillisellä, rajatulla käyttäjätilillä.</p>
+
+    <h2 id="tiedostot">Mitä ohjelma lukee ja kirjoittaa</h2>
+    <table>
+      <thead><tr><th>Mitä</th><th>Missä</th></tr></thead>
+      <tbody>
+        <tr><td>Pistepilvet, jotka itse avaat</td><td>vain valitsemasi tiedostot luetaan</td></tr>
+        <tr><td>Tulokset (IFC, DXF, JSON, korjaukset)</td><td>valitsemasi tulostekansio</td></tr>
+        <tr><td>Ajohistoria (kestot, määrät, koneen tiedot)</td><td><span class="file">%APPDATA%\Ordinate</span></td></tr>
+        <tr><td>Väliaikaistiedostot ja loki</td><td><span class="file">%TEMP%</span></td></tr>
+        <tr><td>Päivityskäytäntö (vain luku)</td><td><span class="file">HKLM / HKCU\SOFTWARE\Policies\Ordinate</span></td></tr>
+      </tbody>
+    </table>
+    <p>Ohjelma ei lue muita kansioita, selaimen tietoja, salasanoja eikä muiden ohjelmien tietoja.</p>
+
+    <h2 id="verkko">Verkkoyhteydet</h2>
+    <table>
+      <thead><tr><th>Yhteys</th><th>Milloin</th><th>Mitä lähtee</th></tr></thead>
+      <tbody>
+        <tr><td><span class="file">api.github.com</span></td><td>käynnistyksessä, ellei kytketty pois</td><td>pyyntö julkaisulistasta, ei tietoja sinusta</td></tr>
+        <tr><td><span class="file">github.com</span> ja GitHubin latauspalvelin</td><td>vain kun painat <span class="ui">Päivitä nyt</span></td><td>ei mitään, pelkkä lataus</td></tr>
+      </tbody>
+    </table>
+    <p>Muita verkkoyhteyksiä ohjelmassa ei ole.</p>
+
+    <h2 id="paivitykset">Päivitykset</h2>
+    <p>Päivitys <b>ei asennu itsestään</b>. Ordinate kertoo uudesta versiosta käynnistyessään, ja sinä päätät painatko <span class="ui">Päivitä nyt</span>.</p>
+    <p>Jokaisen päivityksen rinnalla julkaistaan allekirjoitustiedosto, jossa on paketin nimi, versio, SHA-256-tarkiste ja koko <b>Ed25519-allekirjoitettuna</b>. Yksityinen avain on vain julkaisijalla, ja julkinen avain on ohjelman sisällä. Ennen asennusta ohjelma tarkistaa, että allekirjoitus on aito, että se koskee juuri tätä tiedostoa ja versiota, ja että ladatun tiedoston tarkiste ja koko täsmäävät. Jos jokin ei täsmää, päivitystä ei asenneta.</p>
+    <h3>Päivitysten kytkeminen pois</h3>
+    <p>Koko koneelle (ylläpitäjä, voidaan jakaa ryhmäkäytännöllä):</p>
+    <pre><code>reg add "HKLM\SOFTWARE\Policies\Ordinate" /v DisableUpdateCheck /t REG_DWORD /d 1 /f</code></pre>
+    <p>Yhdelle käyttäjälle sama <span class="file">HKCU</span>:hun tai ympäristömuuttuja <span class="file">ORDINATE_DISABLE_UPDATES=1</span>. Ohjelman lokiin tulee silloin ilmoitus <i>Päivitystarkistus pois päältä</i>, ja päivitykset asennetaan käsin asennusohjelmalla.</p>
+
+    <h2 id="aitous">Latauksen aitouden tarkistus</h2>
+    <p>Jokaisen <a href="https://github.com/Mcrauli/Ordinate-web/releases">julkaisun</a> tiedostojen rinnalla on <span class="file">.sha256</span>- ja <span class="file">.sig.json</span>-tiedostot. Asennetulla Ordinatella voit tarkistaa minkä tahansa ladatun tiedoston:</p>
+    <pre><code>"%LOCALAPPDATA%\Programs\Ordinate\ordinate-cli.exe" verify Ordinate-Setup-0.9.37.exe</code></pre>
+    <p>Komento tulostaa <b>AITO</b> vain, jos allekirjoitus on julkaisijan ja tiedosto on muuttumaton. Allekirjoitustiedoston on oltava samassa kansiossa.</p>
+
+    <h2 id="diagnostiikka">Diagnostiikka</h2>
+    <p><span class="ui">Lähetä diagnostiikka kehittäjälle</span> <b>ei lähetä mitään itse</b>. Se tallentaa tekstitiedoston työpöydälle ja avaa sähköpostiluonnoksen, ja voit lukea tiedoston ennen kuin liität sen.</p>
+    <p>Tiedostossa on ajojen kestot, tunnistettujen elementtien määrät, syötetiedostojen nimet ja koot sekä koneen käyttöjärjestelmä, suoritin ja muisti. Siinä <b>ei ole</b> pistepilviä, geometriaa, koordinaatteja eikä mallin sisältöä.</p>
+
+    <h2 id="rajoitukset">Tiedossa olevat rajoitukset</h2>
+    <ul class="dots">
+      <li>Ohjelmatiedostoja <b>ei vielä ole allekirjoitettu Windowsin koodinallekirjoitusvarmenteella</b>, joten Windows voi varoittaa tuntemattomasta julkaisijasta. Varmenne on hankinnassa. Siihen asti aitouden voi tarkistaa yllä olevalla komennolla tai SHA-256-tarkisteesta.</li>
+      <li>Lähdekoodi ei ole julkinen. Käytetyt avoimen lähdekoodin komponentit ja niiden lisenssit on lueteltu tiedostossa <span class="file">THIRD-PARTY-NOTICES.md</span>, joka on asennuskansiossa. Myös tämä seloste on siellä nimellä <span class="file">TIETOTURVA.md</span>.</li>
+    </ul>
+
+    <h2 id="ilmoita">Ilmoita haavoittuvuudesta</h2>
+    <p>Jos löydät tietoturvaongelman, kerro siitä sähköpostilla <a href="mailto:rekolalauri@gmail.com">rekolalauri@gmail.com</a>. Ilmoitukseen vastataan ja korjauksen aikataulu kerrotaan.</p>
+  </article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
+  </div>
+</footer>
+
+<script>
+const tog = document.querySelector('.navtoggle'), links = document.getElementById('navlinks');
+tog.addEventListener('click', () => { const o = links.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });
+const tocLinks = [...document.querySelectorAll('.toc a')];
+const secs = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-20% 0px -70% 0px'});
+secs.forEach(s => s && spy.observe(s));
+</script>
+</body>
+</html>
