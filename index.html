@@ -29,7 +29,7 @@
       <a href="#kysymykset">Kysymykset</a>
       <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
     </div>
-    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks"><svg viewBox="0 0 18 14" fill="none" aria-hidden="true" width="18" height="14"><line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="13" x2="18" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -67,7 +67,7 @@
       <p class="lead">Ordinate tekee sen jäljityksen puolestasi. Se erottaa rakenteen tavarasta, mittaa jokaisen seinän suoraan pisteistä ja kirjoittaa tuloksen malliksi, jonka kanssa arkkitehti voi heti jatkaa.</p>
       <div class="timeline rise" id="timeline" aria-label="Aikavertailu">
         <div class="trow"><div class="who">Käsin</div><div class="bar slow"><i></i></div><div class="t">Seinä kerrallaan pistepilven päälle, useita työpäiviä isossa kohteessa</div></div>
-        <div class="trow"><div class="who">Ordinatella</div><div class="bar fast"><i></i></div><div class="t">Iso kohde, 37 keilausta: <b style="color:var(--ink);font-weight:500">noin 25 minuuttia</b> tavallisella työasemalla</div></div>
+        <div class="trow"><div class="who">Ordinatella</div><div class="bar fast"><i></i></div><div class="t">Iso kohde, 37 keilausta: <b>noin 25 minuuttia</b> tavallisella työasemalla</div></div>
       </div>
     </div>
   </div>
@@ -115,7 +115,7 @@
   </div>
 </section>
 
-<section id="kenelle" style="padding-top:0">
+<section id="kenelle">
   <div class="wrap">
     <h2 class="h2">Kenelle Ordinate on tehty</h2>
     <div class="who-list">
@@ -145,7 +145,7 @@
   </div>
 </section>
 
-<section style="padding-bottom:0">
+<section class="section-no-pb">
   <div class="wrap">
     <div class="privacy rise">
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="12" width="44" height="30" rx="3"/><path d="M24 52h16M32 42v10"/><path d="M26 27l4 4 8-8"/></svg>
@@ -161,7 +161,7 @@
   <div class="wrap faq">
     <h2 class="h2">Kysymyksiä</h2>
     <div style="margin-top:clamp(32px,5vw,48px)">
-      <details><summary>Tarvitsenko erityisosaamista?</summary><div class="body">Et. Asennat ohjelman kuten minkä tahansa Windows-sovelluksen, vedät keilaukset ikkunaan ja painat <strong>Konvertoi</strong>. Oletusasetukset toimivat useimmissa kohteissa sellaisenaan. Vaihe vaiheelta: <a href="ohje.html" style="color:var(--accent)">käyttöohje</a>.</div></details>
+      <details><summary>Tarvitsenko erityisosaamista?</summary><div class="body">Et. Asennat ohjelman kuten minkä tahansa Windows-sovelluksen, vedät keilaukset ikkunaan ja painat <strong>Konvertoi</strong>. Oletusasetukset toimivat useimmissa kohteissa sellaisenaan. Vaihe vaiheelta: <a href="ohje.html">käyttöohje</a>.</div></details>
       <details><summary>Voiko mallia muokata Revitissä tai ArchiCADissa?</summary><div class="body">Voi. Seinät, laatat, pilarit, palkit, ovet ja ikkunat ovat oikeita rakennusosia yksinkertaisella geometrialla, joten Revitin <strong>Open IFC</strong> muuttaa ne natiiveiksi elementeiksi, joita voi siirtää ja muokata. <strong>Link IFC</strong> tuo mallin taustaksi omalle mallinnukselle. Sama pätee ArchiCADiin.</div></details>
       <details><summary>Asettuuko malli pistepilven päälle?</summary><div class="body">Kyllä. Malli kirjoitetaan keilauksen oikeisiin koordinaatteihin, joten se osuu pistepilven päälle esimerkiksi Cintoossa ilman erillistä kohdistusta. Oletuskoordinaatisto on Suomen ETRS-TM35FIN, ja muut voi valita asetuksista.</div></details>
       <details><summary>Kuinka kauan muunnos kestää?</summary><div class="body">Asunto muutamassa minuutissa. Iso kohde, esimerkiksi 37 keilausta, noin puolessa tunnissa tavallisella työasemalla. Ohjelma näyttää ajon aikana, missä vaiheessa se on ja kauanko on kulunut.</div></details>
