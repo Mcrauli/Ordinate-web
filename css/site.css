@@ -169,6 +169,29 @@ section{padding:clamp(80px,11vw,140px) 0}
 .who-row p{color:var(--muted);font-size:17px;max-width:56ch}
 @media(max-width:760px){.who-row{grid-template-columns:1fr;gap:10px}}
 
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,24px);margin-top:clamp(40px,6vw,64px)}
+.price-card{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:24px}
+.price-card.pro{border-color:rgba(198,242,78,.45);box-shadow:0 24px 64px -30px rgba(198,242,78,.22)}
+.price-head{display:flex;flex-direction:column;gap:8px}
+.price-name{font-family:"Syne";font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.price-card.pro .price-name{color:var(--accent)}
+.price-amt{display:flex;align-items:baseline;gap:4px}
+.price-num{font-family:"Syne";font-weight:700;font-size:clamp(40px,5vw,56px);letter-spacing:-.03em;color:var(--ink);line-height:1}
+.price-unit{font-size:16px;color:var(--muted)}
+.price-feats{list-style:none;border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:13px;flex:1}
+.price-feats li{display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;align-items:baseline;font-size:16px;color:var(--muted)}
+.price-feats li::before{content:"✓";font-size:12px;font-weight:700;color:var(--accent)}
+.price-feats li.off{opacity:.35}
+.price-feats li.off::before{content:"—";color:var(--dim)}
+.price-card .btn{margin-top:auto;width:100%;justify-content:center}
+.per-proj{margin-top:clamp(24px,4vw,40px);display:flex;align-items:center;gap:clamp(14px,2vw,24px);border:1px solid var(--line-2);border-radius:14px;padding:clamp(18px,3vw,26px) clamp(20px,3vw,32px);background:var(--bg-2)}
+.per-proj-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);white-space:nowrap}
+.per-proj-text{color:var(--muted);font-size:16px}
+.per-proj-text strong{color:var(--ink);font-weight:500}
+@media(max-width:860px){.pricing-grid{grid-template-columns:1fr;max-width:480px}}
+@media(max-width:540px){.per-proj{flex-direction:column;align-items:flex-start}}
+
 /* TRUST */
 .trust{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .trust-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);margin-top:clamp(40px,6vw,64px)}
