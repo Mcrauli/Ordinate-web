@@ -9,21 +9,21 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 <style>
 .doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
-.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em}
+.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:700;letter-spacing:-.03em}
 .doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
 .doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(80px,10vw,120px)}
 .toc{position:sticky;top:96px;align-self:start;font-size:15px}
-.toc b{display:block;font-family:"Bricolage Grotesque";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
+.toc b{display:block;font-family:"Syne";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
 .toc ol{list-style:none;border-left:1px solid var(--line)}
 .toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
 .toc a:hover{color:var(--ink)}
 .toc a.on{color:var(--accent);border-left-color:var(--accent)}
 .doc article{max-width:74ch;min-width:0}
-.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
+.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
 .doc h2:first-child{margin-top:0}
 .doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
 .doc p,.doc li{color:var(--muted);font-size:17px}
@@ -32,7 +32,7 @@
 .doc ol.num{list-style:none;counter-reset:n;margin-top:18px}
 .doc ol.num>li{counter-increment:n;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
 .doc ol.num>li:last-child{border-bottom:1px solid var(--line)}
-.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:15px;color:var(--bg);background:var(--accent)}
+.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Syne";font-weight:700;font-size:15px;color:var(--bg);background:var(--accent)}
 .doc ul.dots{margin-top:14px;padding-left:20px}
 .doc ul.dots li{margin-top:6px}
 .doc ul.dots li::marker{color:var(--accent)}
@@ -42,7 +42,7 @@
 .note b{color:var(--ink)}
 .set{margin-top:20px;border-top:1px solid var(--line)}
 .set>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
-.set dt{font-family:"Bricolage Grotesque";font-weight:600;color:var(--ink);font-size:17px}
+.set dt{font-family:"Syne";font-weight:600;color:var(--ink);font-size:17px}
 .set dd{color:var(--muted);font-size:16.5px}
 .set dd .rec{display:block;margin-top:6px;color:var(--ink);font-size:15.5px}
 .set dd .rec::before{content:"Suositus: ";color:var(--accent);font-weight:600}
@@ -52,7 +52,7 @@
 <style>
 .doc table{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
 .doc th,.doc td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
-.doc th{color:var(--ink);font-family:"Bricolage Grotesque";font-weight:600;font-size:15px}
+.doc th{color:var(--ink);font-family:"Syne";font-weight:600;font-size:15px}
 .doc td:first-child{color:var(--ink)}
 .doc td{overflow-wrap:anywhere}
 .doc pre{margin-top:16px;background:var(--panel);border:1px solid var(--line-2);border-radius:11px;padding:14px 16px;overflow-x:auto}

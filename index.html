@@ -12,8 +12,9 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -44,14 +45,14 @@
     </div>
 
     <div class="compare-wrap">
-      <p class="compare-intro">Sama liiketila kahdesti. <b>Vasemmalla</b> se, mitä laserkeilain tallentaa. <b>Oikealla</b> malli, jonka Ordinate siitä tekee.</p>
+      <p class="compare-intro">Sama liiketila kahdesti. <b>Vasemmalla</b> malli, jonka Ordinate siitä tekee. <b>Oikealla</b> se, mitä laserkeilain tallentaa.</p>
       <div class="compare" id="compare">
-        <img src="img/after.webp" alt="Ordinaten tekemä malli samasta liiketilasta: ulkoseinät, takahuoneiden väliseinät ja pilarit. Hyllyt ja tavara on poistettu." width="1600" height="1000" loading="eager" decoding="async">
-        <img class="top" src="img/before.webp" alt="Laserkeilattu pistepilvi liiketilasta: seinien lisäksi mukana hyllyrivit ja kaikki muu mitä tilassa oli." width="1600" height="1000" loading="eager" decoding="async">
-        <div class="tag-side l"><span class="k">Ennen</span><span class="t">Laserkeilaus</span><span class="d">Miljoonia pisteitä. Hyllyt, tavara ja kaikki mukana.</span></div>
-        <div class="tag-side r"><span class="k">Jälkeen</span><span class="t">Ordinaten malli</span><span class="d">Seinät ja pilarit valmiina suunnitteluohjelmaan.</span></div>
+        <canvas id="pcl" width="1600" height="1000" role="img" aria-label="Laserkeilattu pistepilvi liiketilasta: seinien lisäksi mukana hyllyrivit ja kaikki muu mitä tilassa oli."></canvas>
+        <img class="top" src="img/after.webp" alt="Ordinaten tekemä malli samasta liiketilasta: ulkoseinät, takahuoneiden väliseinät ja pilarit. Hyllyt ja tavara on poistettu." width="1600" height="1000" loading="eager" decoding="async">
+        <div class="tag-side l"><span class="k">Jälkeen</span><span class="t">Ordinaten malli</span><span class="d">Seinät ja pilarit valmiina suunnitteluohjelmaan.</span></div>
+        <div class="tag-side r"><span class="k">Ennen</span><span class="t">Laserkeilaus</span><span class="d">Miljoonia pisteitä. Hyllyt, tavara ja kaikki mukana.</span></div>
         <div class="handle"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span><span class="drag-hint">Vedä</span></div>
-        <input type="range" min="0" max="100" value="50" aria-label="Vertailu: siirrä oikealle nähdäksesi enemmän pistepilveä, vasemmalle nähdäksesi enemmän mallia">
+        <input type="range" min="0" max="100" value="50" aria-label="Vertailu: siirrä oikealle nähdäksesi enemmän mallia, vasemmalle nähdäksesi enemmän pistepilveä">
       </div>
     </div>
   </div>
@@ -192,31 +193,123 @@
 </footer>
 
 <script>
-document.documentElement.classList.add('js');
-const io = new IntersectionObserver(es => es.forEach(e => {
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}), {threshold: .18});
-document.querySelectorAll('.rise, .timeline').forEach((el, i) => {
-  el.style.transitionDelay = el.classList.contains('rise') ? ((i % 3) * 80) + 'ms' : '';
+}), {threshold: .12, rootMargin: '0px 0px -6% 0px'}) : {observe: el => el.classList.add('in')};
+document.querySelectorAll('.rise').forEach(el => {
+  const sibs = [...el.parentElement.children].filter(c => c.classList.contains('rise'));
+  el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 90 + 'ms');
+  el.addEventListener('transitionend', ev => { if (ev.target === el && ev.propertyName === 'transform') el.classList.add('done'); });
   io.observe(el);
 });
+document.querySelectorAll('.hero h1, .hero .sub, .hero .cta, .compare-wrap').forEach(el =>
+  el.addEventListener('animationend', ev => { if (ev.target === el) el.classList.add('done'); }));
 
 const cmp = document.getElementById('compare'), rng = cmp.querySelector('input');
-const set = v => cmp.style.setProperty('--pos', v + '%');
-rng.addEventListener('input', () => { set(rng.value); cmp.classList.add('used'); });
+const tagL = cmp.querySelector('.tag-side.l'), tagR = cmp.querySelector('.tag-side.r');
+const setPos = v => {
+  cmp.style.setProperty('--pos', v + '%'); rng.value = v;
+  tagL.style.opacity = v < 24 ? Math.max(.15, (v - 2) / 22) : 1;
+  tagR.style.opacity = v > 76 ? Math.max(.15, (98 - v) / 22) : 1;
+};
+let drag = false, hintDone = false;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const pct = x => clamp((x - cmp.getBoundingClientRect().left) / cmp.offsetWidth * 100, 1, 99);
+cmp.addEventListener('pointerdown', e => {
+  drag = true; hintDone = true;
+  cmp.setPointerCapture(e.pointerId);
+  setPos(pct(e.clientX)); cmp.classList.add('used');
+});
+cmp.addEventListener('pointermove', e => { if (drag) setPos(pct(e.clientX)); });
+cmp.addEventListener('pointerup', () => { drag = false; });
+cmp.addEventListener('pointercancel', () => { drag = false; });
+rng.addEventListener('input', () => { setPos(rng.value); cmp.classList.add('used'); hintDone = true; });
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  let t0 = null, done = false;
+  const io2 = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+  const phases = [[0,.28,50,25],[.28,.72,25,75],[.72,1,75,50]];
+  let t0 = null;
   const hint = ts => {
-    if (done) return;
+    if (hintDone) return;
     t0 ??= ts;
-    const k = Math.min((ts - t0) / 2200, 1), e = 1 - Math.pow(1 - k, 4);
-    const v = 50 + Math.sin(e * Math.PI * 2) * 22 * (1 - e * .3);
-    set(k < 1 ? v : 50); if (k < 1) requestAnimationFrame(hint);
+    const k = Math.min((ts - t0) / 2600, 1);
+    const ph = phases.find(([a,b]) => k <= b) ?? phases[2];
+    const t = clamp((k - ph[0]) / (ph[1] - ph[0]), 0, 1);
+    setPos(ph[2] + (ph[3] - ph[2]) * io2(t));
+    if (k < 1) requestAnimationFrame(hint);
   };
-  const cio = new IntersectionObserver(es => { if (es[0].isIntersecting) { setTimeout(() => requestAnimationFrame(hint), 1300); cio.disconnect(); } });
+  const cio = new IntersectionObserver(es => {
+    if (es[0].isIntersecting) { setTimeout(() => requestAnimationFrame(hint), 900); cio.disconnect(); }
+  });
   cio.observe(cmp);
-  rng.addEventListener('pointerdown', () => { done = true; });
 }
+
+(function(){
+  const cv=document.getElementById('pcl');
+  if(!cv)return;
+  const W=1600,H=1000,ctx=cv.getContext('2d'),id=ctx.createImageData(W,H),d=id.data;
+  for(let i=0;i<d.length;i+=4){d[i]=8;d[i+1]=11;d[i+2]=17;d[i+3]=255;}
+
+  const proj=(x,y,z)=>[(130+x*33+z*(-2))|0,(860+x*0.75+y*(-40)+z*(-33.5))|0];
+
+  const hc=(y,mY=3.5)=>{
+    const t=Math.max(0,Math.min(1,y/mY)),h=(1-t)*240,s=0.9,v=0.72+t*0.18;
+    const c=v*s,x2=c*(1-Math.abs(h/60%2-1)),m=v-c;
+    let r,g,b;
+    if(h<60){r=c;g=x2;b=0}else if(h<120){r=x2;g=c;b=0}
+    else if(h<180){r=0;g=c;b=x2}else if(h<240){r=0;g=x2;b=c}
+    else{r=0;g=0;b=c}
+    const n=(Math.random()-.5)*12;
+    const cl=v2=>Math.max(0,Math.min(255,(v2+m)*255+n|0));
+    return[cl(r),cl(g),cl(b)];
+  };
+
+  const dot=(sx,sy,r,g,b)=>{if(sx<0||sx>=W||sy<0||sy>=H)return;const i=(sy*W+sx)*4;d[i]=r;d[i+1]=g;d[i+2]=b;};
+  const rn=()=>Math.random();
+
+  // 5 asemaa: 3 pääsalissa, 2 takahuoneissa — hyvä kattavuus kaikkialle
+  const stations=[[7,1.5,5],[14,1.5,14],[7,1.5,16],[33.5,1.5,5],[33.5,1.5,15]];
+  const dens=(x,y,z)=>{let best=0;for(const[a,b,c]of stations){const r2=(x-a)**2+(y-b)**2+(z-c)**2;best=Math.max(best,1/(1+r2*.07));}return best;};
+  const nRings=160,qy=y=>Math.round(y/3.5*nRings)*3.5/nRings;
+
+  const surf=(n,fn)=>{
+    for(let i=0;i<n;i++){
+      let[x,y,z]=fn();
+      y=qy(y);
+      if(rn()>dens(x,y,z)*1.5+.15)continue;
+      const[sx,sy]=proj(x,y,z);
+      if(sx<0||sx>=W||sy<0||sy>=H)continue;
+      const depth=Math.max(0,Math.min(1,(x*.3+z*.7)/25));
+      const br=0.7+(1-depth)*.3;
+      const[r,g,b]=hc(y);
+      dot(sx,sy,r*br|0,g*br|0,b*br|0);
+    }
+  };
+
+  // Lattia & katto
+  surf(130000,()=>[rn()*40,rn()*.06,rn()*20]);
+  surf(50000,()=>[rn()*40,3.5-rn()*.06,rn()*20]);
+
+  // Ulkoseinät
+  surf(30000,()=>[rn()*40,rn()*3.5,rn()*.09]);
+  surf(24000,()=>[rn()*40,rn()*3.5,20-rn()*.09]);
+  surf(20000,()=>[rn()*.09,rn()*3.5,rn()*20]);
+  surf(20000,()=>[40-rn()*.09,rn()*3.5,rn()*20]);
+
+  // Pilarit: 6×5 pääsalissa (x=0–27)
+  for(const px of[3,7,11,15,19,24]) for(const pz of[2,5.5,9,12.5,17]){
+    surf(1600,()=>[px+(rn()-.5)*.35,rn()*3.5,pz+(rn()-.5)*.35]);
+  }
+
+  // Takahuoneet — 2×2 jako (selvät seinät)
+  surf(22000,()=>[27+(rn()-.5)*.09,rn()*3.5,rn()*20]);
+  surf(14000,()=>[27+rn()*13,rn()*3.5,10+(rn()-.5)*.09]);
+  surf(14000,()=>[33+(rn()-.5)*.09,rn()*3.5,rn()*20]);
+
+  ctx.putImageData(id,0,0);
+  const tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;
+  const tc=tmp.getContext('2d');tc.filter='blur(0.4px)';tc.drawImage(cv,0,0);
+  ctx.clearRect(0,0,W,H);ctx.drawImage(tmp,0,0);
+})();
 
 const tog = document.querySelector('.navtoggle'), links = document.getElementById('navlinks');
 tog.addEventListener('click', () => { const o = links.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });

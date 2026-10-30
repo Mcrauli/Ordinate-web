@@ -14,19 +14,19 @@ colors:
   warn: "#ffb454"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontFamily: "Syne, sans-serif"
     fontSize: "clamp(46px, 8.2vw, 94px)"
     fontWeight: 800
     lineHeight: 1.04
     letterSpacing: "-0.035em"
   headline:
-    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontFamily: "Syne, sans-serif"
     fontSize: "clamp(32px, 4.6vw, 52px)"
     fontWeight: 800
     lineHeight: 1.04
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontFamily: "Syne, sans-serif"
     fontSize: "23px"
     fontWeight: 600
     lineHeight: 1.1
@@ -87,7 +87,7 @@ Sävy on mittaava, ei mainostava: jokainen väite näytetään konkretialla (mm-
 **Key Characteristics:**
 - Tumma, sinertävä "keilaushalli" -pohja + pistepilvitekstuuri
 - Yksi terävä lime-aksentti teoille ja tuloksille; cyan datalle/merkinnöille
-- Vahva display-typografia (Bricolage Grotesque 800), editoriaalinen rytmi
+- Vahva display-typografia (Syne 700), editoriaalinen rytmi
 - Hiusviivat (#1e2a3a) jakajina — ei laatikoita laatikoiden sisään
 - Mitattu, faktapohjainen ääni; ei hypeä
 
@@ -116,11 +116,11 @@ Tumma sinertävä neutraalipohja, jossa kaksi kylläistä aksenttia kantavat kok
 
 ## 3. Typography
 
-**Display Font:** Bricolage Grotesque (fallback sans-serif)
+**Display Font:** Syne (fallback sans-serif)
 **Body Font:** Spline Sans (fallback sans-serif)
 **Label/Mono Font:** JetBrains Mono
 
-**Character:** Bricolage Grotesque on omaääninen, hieman epäsovinnainen groteski — antaa rohkeuden ilman koristeellisuutta. Spline Sans on neutraali humanisti, joka pitää leipätekstin luettavana. JetBrains Mono tuo teknisen, "mittalaite"-tunnun labeleihin ja koodiin. Pari toimii kontrastiakselilla: ekspressiivinen display vs. neutraali humanisti vs. mono — ei kahta samanlaista groteskia.
+**Character:** Syne on omaääninen, hieman epäsovinnainen groteski — antaa rohkeuden ilman koristeellisuutta. Spline Sans on neutraali humanisti, joka pitää leipätekstin luettavana. JetBrains Mono tuo teknisen, "mittalaite"-tunnun labeleihin ja koodiin. Pari toimii kontrastiakselilla: ekspressiivinen display vs. neutraali humanisti vs. mono — ei kahta samanlaista groteskia.
 
 ### Hierarchy
 - **Display** (800, clamp 46–94px, lh 1.04, ls -0.035em): Vain hero. `text-wrap: balance`.
@@ -147,7 +147,7 @@ Systeemi on lähtökohtaisesti **litteä**. Syvyys tehdään tonaalisella kerros
 
 ### Buttons
 - **Shape:** Pehmeästi pyöristetty (11px, `{rounded.md}`).
-- **Primary:** Lime-tausta (#c6f24e), tumma teksti (#0a0e14), padding 14×26px, Bricolage 600. Hover: `translateY(-2px)`. Active: takaisin 0.
+- **Primary:** Lime-tausta (#c6f24e), tumma teksti (#0a0e14), padding 14×26px, Syne 600. Hover: `translateY(-2px)`. Active: takaisin 0.
 - **Ghost:** bg-2-tausta, ink-teksti, line-reuna. Hover: lime-reuna + lime-teksti.
 - **Focus:** näkyvä `:focus-visible` — 2px lime-ääriviiva, offset 3px.
 
@@ -167,7 +167,7 @@ Systeemi on lähtökohtaisesti **litteä**. Syvyys tehdään tonaalisella kerros
 - Hiusviivarivit, mono-otsikot (cyan, uppercase), `td:first-child` lime-mono nowrap. Ei solujen reunoja, vain vaakaviivat.
 
 ### Signature: Editorial "Why" Row
-Iso väittämä (Bricolage 800, clamp 27–42px) avainsana limellä korostettuna, hiusviivalla erotettu rivi — ei kortti. Kantaa "rohkea & erottuva" -linjan ilman laatikoita.
+Iso väittämä (Syne 700, clamp 27–42px) avainsana limellä korostettuna, hiusviivalla erotettu rivi — ei kortti. Kantaa "rohkea & erottuva" -linjan ilman laatikoita.
 
 ### Signature: Before/After Scan Slider
 Heron pääkuva: sama kohde samasta kamerakulmasta pistepilvenä (cyan) ja mallina (valkoinen, lime-yläreunat), vedettävä erotin (lime). Kuvat renderöidään `data/_web_render3d.py`:llä vain omasta tai markkinointiin lisensoidusta datasta. Näppäimistö: `input[type=range]`.
@@ -183,7 +183,7 @@ Reveal-animaatiot vahvistavat jo näkyvää oletusta (`.js`-gated), staggered In
 ### Do:
 - **Do** käytä limeä aktiivisena säteenä ≤10 % pinnasta (CTA, avainsana, tulos); cyan datalle ja merkinnöille.
 - **Do** rakenna syvyys sävyllä (bg → panel) ja hiusviivoilla, ei varjoilla.
-- **Do** pidä display-typografia rohkeana (Bricolage 800) ja hierarkia jyrkkänä.
+- **Do** pidä display-typografia rohkeana (Syne 700) ja hierarkia jyrkkänä.
 - **Do** perustele väitteet konkretialla (mm, QA, IfcWall/IfcDoor), älä superlatiiveilla.
 - **Do** varmista ≥4.5:1 kontrasti ja näkyvät `:focus-visible`-tilat.
 
