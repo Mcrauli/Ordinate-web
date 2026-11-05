@@ -108,12 +108,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .tag-side.r .k{color:var(--accent)}
 .tag-side .t{font-family:"Syne";font-weight:700;font-size:clamp(16px,1.8vw,20px);letter-spacing:-.02em;line-height:1.15}
 .tag-side .d{font-size:14px;color:var(--muted);line-height:1.45}
-.drag-hint{position:absolute;top:calc(50% + 34px);left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);padding:8px 12px;border-radius:100px;white-space:nowrap;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.drag-hint{position:absolute;top:calc(50% + 34px);left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);padding:10px 14px;border-radius:100px;white-space:nowrap;transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .compare.used .drag-hint{transform:translate3d(-50%,-4px,0)}
 .compare.used .drag-hint{opacity:0}
 .compare:not(.used) .knob{animation:knob-pulse 2.8s var(--ease) 1.8s infinite}
 @keyframes knob-pulse{0%,100%{box-shadow:0 0 0 6px rgba(10,14,20,.55),0 6px 20px rgba(0,0,0,.5)}60%{box-shadow:0 0 0 11px rgba(198,242,78,.14),0 0 0 6px rgba(10,14,20,.55),0 6px 20px rgba(0,0,0,.5)}}
-@media(max-width:620px){.tag-side .d{display:none}.tag-side{bottom:12px;padding:8px 10px}.tag-side.l{left:10px}.tag-side.r{right:10px}}
+@media(max-width:620px){.tag-side .d{display:none}.tag-side{bottom:12px;padding:10px 12px}.tag-side.l{left:10px}.tag-side.r{right:10px}}
 
 /* SECTIONS */
 section{padding:clamp(80px,11vw,140px) 0}
@@ -148,7 +148,7 @@ section{padding:clamp(80px,11vw,140px) 0}
 .step h3{font-size:clamp(23px,2.4vw,27px);font-weight:600;letter-spacing:-.02em}
 .step p{margin-top:12px;color:var(--muted);font-size:17px;line-height:1.65}
 .files{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.files span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent-2);border:1px solid var(--line-2);border-radius:8px;padding:8px 11px}
+.files span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent-2);border:1px solid var(--line-2);border-radius:8px;padding:10px 13px}
 @media(max-width:860px){.steps{grid-template-columns:1fr;gap:48px}}
 
 /* WHAT YOU GET: image + defined list */
