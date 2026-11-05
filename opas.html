@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu · Ordinate</title>
-<meta name="description" content="Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi. Käsin se tarkoittaa usein päiviä. Tässä miksi — ja miten automaatti ratkaisee sen.">
-<meta property="og:title" content="Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu">
-<meta property="og:description" content="Koordinaatit, yläkuvannot, kohinapisteet, pilarit — käsin mallintamisen todellinen työmäärä ja miten Ordinate hoitaa sen automaattisesti.">
+<title>Pistepilvestä rakennusmalliin: mitä siinä oikeasti tapahtuu · Ordinate</title>
+<meta name="description" content="Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi. Käsin se tarkoittaa usein päiviä. Tässä miksi, ja miten automaatti ratkaisee sen.">
+<meta property="og:title" content="Pistepilvestä rakennusmalliin: mitä siinä oikeasti tapahtuu">
+<meta property="og:description" content="Koordinaatit, yläkuvannot, kohinapisteet, pilarit: käsin mallintamisen todellinen työmäärä ja miten Ordinate hoitaa sen automaattisesti.">
 <meta property="og:image" content="https://rekolalauri.fi/Ordinate-web/img/after.webp">
 <meta property="og:url" content="https://rekolalauri.fi/Ordinate-web/opas.html">
 <meta property="og:type" content="article">
@@ -23,7 +23,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu",
+  "headline": "Pistepilvestä rakennusmalliin: mitä siinä oikeasti tapahtuu",
   "description": "Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi jota arkkitehti voi oikeasti käyttää.",
   "inLanguage": "fi",
   "url": "https://rekolalauri.fi/Ordinate-web/opas.html",
@@ -89,8 +89,8 @@
 <main>
 <div class="article-hero">
   <div class="wrap">
-    <p class="kicker">Scan-to-BIM / opas</p>
-    <h1>Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu</h1>
+    <nav class="breadcrumb" aria-label="Polku"><a href="index.html">Ordinate</a><span aria-hidden="true"> / </span><span aria-current="page">Opas</span></nav>
+    <h1>Pistepilvestä rakennusmalliin: mitä siinä oikeasti tapahtuu</h1>
     <p class="intro">Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi, jota arkkitehti tai rakennesuunnittelija voi oikeasti käyttää. <strong>Käsin tehtynä se tarkoittaa usein päiviä.</strong></p>
   </div>
 </div>
@@ -100,17 +100,17 @@
 
 <h2>Mitä pistepilvi sisältää</h2>
 
-<p>Laserkeilain mittaa tilan etäisyyksinä ja tallentaa tuloksen pisteinä kolmiulotteisessa koordinaatistossa. Tyypillisessä sisätilassa syntyy miljoonia pisteitä per keilausasema — ja pisteet sisältävät kaiken mitä keilain näki. Seinät, lattian, katon. Hyllyt, putket, kaluston. Ihmiset jos sattuivat olemaan paikalla.</p>
+<p>Laserkeilain mittaa tilan etäisyyksinä ja tallentaa tuloksen pisteinä kolmiulotteisessa koordinaatistossa. Tyypillisessä sisätilassa syntyy miljoonia pisteitä per keilausasema, ja ne sisältävät kaiken mitä keilain näki. Seinät, lattian, katon. Hyllyt, putket, kaluston. Ihmiset jos sattuivat olemaan paikalla.</p>
 
-<p>Rakenne ja tavara ovat samassa pilvessä ilman erottelua. Pisteet eivät tiedä olevansa seinä tai hylly — ne ovat koordinaatteja.</p>
+<p>Rakenne ja tavara ovat samassa pilvessä ilman erottelua. Pisteet eivät tiedä olevansa seinä tai hylly. Ne ovat koordinaatteja.</p>
 
 <h2>Miksi käsin mallintaminen on hidasta</h2>
 
-<p>Mallintaminen alkaa koordinaatiston asettamisesta. <strong>Nurkkapisteiden pitää osua tarkasti paikalleen</strong> — tässä vaiheessa pieni virhe kertautuu koko mallin läpi. Se vaatii tarkkuutta jo ennen kuin yhtään seinää on piirretty.</p>
+<p>Mallintaminen alkaa koordinaatiston asettamisesta. <strong>Nurkkapisteiden pitää osua tarkasti paikalleen.</strong> Pieni virhe tässä vaiheessa kertautuu koko mallin läpi. Se vaatii tarkkuutta jo ennen kuin yhtään seinää on piirretty.</p>
 
-<p>Sen jälkeen tyypillinen tapa on luoda yläkuvanto pistepilvestä ja alkaa jäljittää seiniä sen päälle. Ulkoseinät ensin, sitten sisäseinät. Jokainen erikseen, jokainen mitattu suoraan pistepilvestä. Pilarit ja palkit päälle — nekin yksi kerrallaan.</p>
+<p>Sen jälkeen tyypillinen tapa on luoda yläkuvanto pistepilvestä ja alkaa jäljittää seiniä sen päälle. Ulkoseinät ensin, sitten sisäseinät. Jokainen erikseen, jokainen mitattu suoraan pistepilvestä. Pilarit ja palkit päälle, nekin yksi kerrallaan.</p>
 
-<p>Kaksi asiaa tekee tästä erityisen työlästä. Ensimmäinen on <strong>sisätilojen kohina</strong>: kaikumat ja heijastukset jättävät ylimääräisiä pisteitä jotka eivät kuulu mihinkään pintaan. Ne pitää osata sivuuttaa. Toinen on <strong>keilausnäkyvyys</strong> — keilain ei näe nurkan taakse. Sokkeloisessa tilassa tai siellä missä on paljon tavaraa jotkut seinänpätkät jäävät heikosti mitatuiksi. Silti ne pitää mallintaa, koordinaatit arvioiden.</p>
+<p>Kaksi asiaa tekee tästä erityisen työlästä. Ensimmäinen on <strong>sisätilojen kohina</strong>: kaikumat ja heijastukset jättävät ylimääräisiä pisteitä jotka eivät kuulu mihinkään pintaan. Ne pitää osata sivuuttaa. Toinen on <strong>keilausnäkyvyys</strong>: keilain ei näe nurkan taakse. Sokkeloisessa tilassa tai siellä missä on paljon tavaraa jotkut seinänpätkät jäävät heikosti mitatuiksi. Silti ne pitää mallintaa, koordinaatit arvioiden.</p>
 
 <div class="callout">
   <div class="num">37</div>
@@ -120,7 +120,7 @@
 
 <h2>Mitä automaatti ratkaisee</h2>
 
-<p>Ordinaten ydintehtävä on sama kuin mallintajalla: erottaa rakenne tavarasta ja muuntaa se mitattaviksi objekteiksi. Seinät löydetään geometrian perusteella — ei yksittäisten pisteiden, vaan pintojen. Koordinaatisto asettuu automaattisesti. Kohina suodattuu.</p>
+<p>Ordinaten ydintehtävä on sama kuin mallintajalla: erottaa rakenne tavarasta ja muuntaa se mitattaviksi objekteiksi. Seinät löydetään geometrian perusteella, ei yksittäisten pisteiden. Koordinaatisto asettuu automaattisesti. Kohina suodattuu.</p>
 
 <p>Tulos on IFC4-tiedosto jossa seinät ovat <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcWall</span>-objekteja, ovet <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcDoor</span>, pilarit <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcColumn</span>. Ei viivoja, vaan oikeita tietomallikohteita joita voi avata ja muokata suoraan Revitissä tai ArchiCADissa.</p>
 
@@ -128,11 +128,11 @@
 
 <p>Tässä on se kysymys joka aina kuuluu kysyä automaattiselta mallintajalta. Ordinaten Pro-tilauksessa se on nähtävissä suoraan: <strong>jokaisen seinän kohdalla näkyy kuinka lähelle se osuu alkuperäisiin keilauspisteisin</strong>. Jos jokin kohta on pielessä, sen huomaa ennen kuin malli lähtee eteenpäin.</p>
 
-<p>Se on myös ainoa tapa tarkistaa asia luotettavasti — ei silmämääräisesti katsomalla valmista mallia, vaan vertaamalla sitä raakapilveen josta se syntyi.</p>
+<p>Se on myös ainoa tapa tarkistaa asia luotettavasti: ei silmämääräisesti valmista mallia katsomalla, vaan vertaamalla sitä raakapilveen josta se syntyi.</p>
 
 <h2>Milloin kannattaa käyttää</h2>
 
-<p>Ordinate sopii parhaiten tilanteisiin joissa tarvitaan mitattava pohjapiirros tai runkomalli olemassa olevasta rakennuksesta: saneeraussuunnittelu, korjausrakentaminen, tilamuutosten dokumentointi. Kohteessa voi olla muutama huone tai useita kymmeniä keilausasemia — työmäärä skaalautuu samalla tavalla.</p>
+<p>Ordinate sopii parhaiten tilanteisiin joissa tarvitaan mitattava pohjapiirros tai runkomalli olemassa olevasta rakennuksesta: saneeraussuunnittelu, korjausrakentaminen, tilamuutosten dokumentointi. Kohteessa voi olla muutama huone tai useita kymmeniä keilausasemia, työmäärä skaalautuu samalla tavalla.</p>
 
 <p>Malli ei korvaa mallintajaa joka viimeistelee ja tarkastaa tuloksen. Se korvaa sen vaiheen jossa istutaan pistepilven äärellä ja piirretään seinä kerrallaan.</p>
 
