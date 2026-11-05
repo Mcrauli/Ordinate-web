@@ -36,8 +36,8 @@ section[id]{scroll-margin-top:84px}
 .accent{color:var(--accent)}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(10,14,20,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+nav.site-nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(10,14,20,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
 .brand{display:flex;align-items:center;gap:10px;font-family:"Syne";font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
 .logo{width:30px;height:30px;flex:none}
 .navlinks{display:flex;align-items:center;gap:clamp(20px,2.2vw,32px);font-size:15px;color:var(--muted)}
