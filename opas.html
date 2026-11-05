@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu · Ordinate</title>
+<meta name="description" content="Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi. Käsin se tarkoittaa usein päiviä. Tässä miksi — ja miten automaatti ratkaisee sen.">
+<meta property="og:title" content="Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu">
+<meta property="og:description" content="Koordinaatit, yläkuvannot, kohinapisteet, pilarit — käsin mallintamisen todellinen työmäärä ja miten Ordinate hoitaa sen automaattisesti.">
+<meta property="og:image" content="https://rekolalauri.fi/Ordinate-web/img/after.webp">
+<meta property="og:url" content="https://rekolalauri.fi/Ordinate-web/opas.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rekolalauri.fi/Ordinate-web/img/after.webp">
+<link rel="canonical" href="https://rekolalauri.fi/Ordinate-web/opas.html">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu",
+  "description": "Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi jota arkkitehti voi oikeasti käyttää.",
+  "inLanguage": "fi",
+  "url": "https://rekolalauri.fi/Ordinate-web/opas.html",
+  "image": "https://rekolalauri.fi/Ordinate-web/img/after.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Lauri Rekola",
+    "url": "https://rekolalauri.fi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ordinate",
+    "url": "https://rekolalauri.fi/Ordinate-web/"
+  },
+  "datePublished": "2026-11-05"
+}
+</script>
+<style>
+.article-hero{padding:clamp(64px,10vw,120px) 0 clamp(32px,5vw,56px);border-bottom:1px solid var(--line)}
+.article-hero .kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2);margin-bottom:20px}
+.article-hero h1{font-size:clamp(32px,5vw,58px);font-weight:700;letter-spacing:-.035em;line-height:1.05;max-width:18ch;text-wrap:balance}
+.article-hero .intro{margin-top:24px;font-size:clamp(17px,1.9vw,20px);color:var(--muted);max-width:58ch;line-height:1.6}
+.article-hero .intro strong{color:var(--ink)}
+.article-body{max-width:720px;padding:clamp(48px,7vw,80px) 0 clamp(80px,10vw,120px)}
+.article-body h2{font-family:"Syne",sans-serif;font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.025em;margin-top:clamp(48px,6vw,64px);margin-bottom:16px;color:var(--ink)}
+.article-body h2:first-child{margin-top:0}
+.article-body p{font-size:17px;line-height:1.75;color:var(--muted);margin-top:16px;max-width:68ch}
+.article-body p:first-of-type{margin-top:0}
+.article-body p strong{color:var(--ink);font-weight:500}
+.article-body a{color:var(--accent);text-underline-offset:3px}
+.callout{margin:clamp(32px,5vw,48px) 0;border:1px solid var(--line-2);border-top:2px solid var(--accent);border-radius:14px;padding:clamp(24px,3vw,32px);background:var(--panel)}
+.callout .num{font-family:"Syne",sans-serif;font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.callout .num-label{font-size:15px;color:var(--muted);margin-top:4px}
+.callout p{font-size:16px;color:var(--muted);margin-top:12px;max-width:52ch}
+.callout p strong{color:var(--ink);font-weight:500}
+.steps-list{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
+.steps-list li{padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--muted);display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;align-items:baseline}
+.steps-list li::before{content:counter(step);counter-increment:step;font-family:"Syne",sans-serif;font-weight:700;font-size:14px;color:var(--accent-2)}
+.steps-list{counter-reset:step}
+.steps-list strong{color:var(--ink);font-weight:500}
+.article-cta{margin-top:clamp(48px,7vw,72px);padding:clamp(28px,4vw,44px);border:1px solid rgba(198,242,78,.35);border-radius:14px;background:var(--bg-2);text-align:center}
+.article-cta h2{font-size:clamp(22px,2.8vw,32px);font-weight:700;letter-spacing:-.025em;text-wrap:balance}
+.article-cta p{color:var(--muted);font-size:16px;margin:12px auto 0;max-width:48ch}
+.article-cta .cta{justify-content:center;margin-top:28px}
+</style>
+</head>
+<body>
+
+<nav aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Ordinate, etusivu"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#miten">Miten toimii</a>
+      <a href="index.html#hinnoittelu">Hinnoittelu</a>
+      <a href="ohje.html">Käyttöohje</a>
+      <a href="opas.html" aria-current="page" style="color:var(--ink)">Opas</a>
+      <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
+    </div>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks"><svg viewBox="0 0 18 14" fill="none" aria-hidden="true" width="18" height="14"><line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="13" x2="18" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+</nav>
+
+<main>
+<div class="article-hero">
+  <div class="wrap">
+    <p class="kicker">Scan-to-BIM / opas</p>
+    <h1>Pistepilvestä rakennusmalliin — mitä siinä oikeasti tapahtuu</h1>
+    <p class="intro">Laserkeilaus hoituu päivässä. Sen jälkeen alkaa se osuus josta harvemmin puhutaan: pistepilven muuttaminen malliksi, jota arkkitehti tai rakennesuunnittelija voi oikeasti käyttää. <strong>Käsin tehtynä se tarkoittaa usein päiviä.</strong></p>
+  </div>
+</div>
+
+<div class="wrap">
+<article class="article-body">
+
+<h2>Mitä pistepilvi sisältää</h2>
+
+<p>Laserkeilain mittaa tilan etäisyyksinä ja tallentaa tuloksen pisteinä kolmiulotteisessa koordinaatistossa. Tyypillisessä sisätilassa syntyy miljoonia pisteitä per keilausasema — ja pisteet sisältävät kaiken mitä keilain näki. Seinät, lattian, katon. Hyllyt, putket, kaluston. Ihmiset jos sattuivat olemaan paikalla.</p>
+
+<p>Rakenne ja tavara ovat samassa pilvessä ilman erottelua. Pisteet eivät tiedä olevansa seinä tai hylly — ne ovat koordinaatteja.</p>
+
+<h2>Miksi käsin mallintaminen on hidasta</h2>
+
+<p>Mallintaminen alkaa koordinaatiston asettamisesta. <strong>Nurkkapisteiden pitää osua tarkasti paikalleen</strong> — tässä vaiheessa pieni virhe kertautuu koko mallin läpi. Se vaatii tarkkuutta jo ennen kuin yhtään seinää on piirretty.</p>
+
+<p>Sen jälkeen tyypillinen tapa on luoda yläkuvanto pistepilvestä ja alkaa jäljittää seiniä sen päälle. Ulkoseinät ensin, sitten sisäseinät. Jokainen erikseen, jokainen mitattu suoraan pistepilvestä. Pilarit ja palkit päälle — nekin yksi kerrallaan.</p>
+
+<p>Kaksi asiaa tekee tästä erityisen työlästä. Ensimmäinen on <strong>sisätilojen kohina</strong>: kaikumat ja heijastukset jättävät ylimääräisiä pisteitä jotka eivät kuulu mihinkään pintaan. Ne pitää osata sivuuttaa. Toinen on <strong>keilausnäkyvyys</strong> — keilain ei näe nurkan taakse. Sokkeloisessa tilassa tai siellä missä on paljon tavaraa jotkut seinänpätkät jäävät heikosti mitatuiksi. Silti ne pitää mallintaa, koordinaatit arvioiden.</p>
+
+<div class="callout">
+  <div class="num">37</div>
+  <div class="num-label">keilausasemaa, yksi kohde</div>
+  <p>Käsin mallintaminen olisi tarkoittanut useita työpäiviä. <strong>Ordinate hoiti saman 25 minuutissa</strong> tavallisella Windows-työasemalla.</p>
+</div>
+
+<h2>Mitä automaatti ratkaisee</h2>
+
+<p>Ordinaten ydintehtävä on sama kuin mallintajalla: erottaa rakenne tavarasta ja muuntaa se mitattaviksi objekteiksi. Seinät löydetään geometrian perusteella — ei yksittäisten pisteiden, vaan pintojen. Koordinaatisto asettuu automaattisesti. Kohina suodattuu.</p>
+
+<p>Tulos on IFC4-tiedosto jossa seinät ovat <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcWall</span>-objekteja, ovet <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcDoor</span>, pilarit <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent-2)">IfcColumn</span>. Ei viivoja, vaan oikeita tietomallikohteita joita voi avata ja muokata suoraan Revitissä tai ArchiCADissa.</p>
+
+<h2>Kuinka lähelle malli osuu</h2>
+
+<p>Tässä on se kysymys joka aina kuuluu kysyä automaattiselta mallintajalta. Ordinaten Pro-tilauksessa se on nähtävissä suoraan: <strong>jokaisen seinän kohdalla näkyy kuinka lähelle se osuu alkuperäisiin keilauspisteisin</strong>. Jos jokin kohta on pielessä, sen huomaa ennen kuin malli lähtee eteenpäin.</p>
+
+<p>Se on myös ainoa tapa tarkistaa asia luotettavasti — ei silmämääräisesti katsomalla valmista mallia, vaan vertaamalla sitä raakapilveen josta se syntyi.</p>
+
+<h2>Milloin kannattaa käyttää</h2>
+
+<p>Ordinate sopii parhaiten tilanteisiin joissa tarvitaan mitattava pohjapiirros tai runkomalli olemassa olevasta rakennuksesta: saneeraussuunnittelu, korjausrakentaminen, tilamuutosten dokumentointi. Kohteessa voi olla muutama huone tai useita kymmeniä keilausasemia — työmäärä skaalautuu samalla tavalla.</p>
+
+<p>Malli ei korvaa mallintajaa joka viimeistelee ja tarkastaa tuloksen. Se korvaa sen vaiheen jossa istutaan pistepilven äärellä ja piirretään seinä kerrallaan.</p>
+
+<div class="article-cta">
+  <h2>Kokeile omalla pistepilvelläsi</h2>
+  <p>Lataa Ordinate, avaa oma E57- tai LAS-tiedostosi ja katso mitä siitä syntyy. Ei rekisteröitymistä.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Lataa Windowsille</a>
+    <a class="btn btn-ghost" href="index.html">Lue lisää Ordinatesta</a>
+  </div>
+</div>
+
+</article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true" width="22" height="22"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <nav class="links" aria-label="Alatunniste">
+      <a href="ohje.html">Käyttöohje</a>
+      <a href="opas.html">Opas</a>
+      <a href="tietoturva.html">Tietoturva</a>
+      <a href="index.html#kysymykset">Kysymykset</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+document.querySelector('.navtoggle').addEventListener('click', function() {
+  const links = document.getElementById('navlinks');
+  const open = links.classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
+  this.setAttribute('aria-label', open ? 'Sulje valikko' : 'Avaa valikko');
+});
+document.querySelectorAll('#navlinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navlinks').classList.remove('open');
+    document.querySelector('.navtoggle').setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
