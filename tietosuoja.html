@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tietosuojaseloste · Ordinate</title>
+<meta name="description" content="Mitä tietoja Ordinaten lisenssin tarkistus käsittelee, miksi, kuinka kauan ja mitkä oikeutesi ovat.">
+<link rel="canonical" href="https://rekolalauri.fi/Ordinate-web/tietosuoja.html">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
+.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:700;letter-spacing:-.03em}
+.doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
+.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(80px,10vw,120px)}
+.toc{position:sticky;top:96px;align-self:start;font-size:15px}
+.toc b{display:block;font-family:"Syne";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
+.toc ol{list-style:none;border-left:1px solid var(--line)}
+.toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent)}
+.doc article{max-width:74ch;min-width:0}
+.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
+.doc h2:first-child{margin-top:0}
+.doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
+.doc p,.doc li{color:var(--muted);font-size:17px}
+.doc p{margin-top:14px}
+.doc strong,.doc b{color:var(--ink);font-weight:500}
+.doc ol.num{list-style:none;counter-reset:n;margin-top:18px}
+.doc ol.num>li{counter-increment:n;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
+.doc ol.num>li:last-child{border-bottom:1px solid var(--line)}
+.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Syne";font-weight:700;font-size:15px;color:var(--bg);background:var(--accent)}
+.doc ul.dots{margin-top:14px;padding-left:20px}
+.doc ul.dots li{margin-top:6px}
+.doc ul.dots li::marker{color:var(--accent)}
+.ui{font-family:"Spline Sans";font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:2px 8px;font-size:.92em;white-space:nowrap}
+.file{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+.note{margin-top:20px;border:1px solid var(--line-2);background:var(--panel);border-radius:11px;padding:16px 18px;font-size:16px;color:var(--muted)}
+.note b{color:var(--ink)}
+.set{margin-top:20px;border-top:1px solid var(--line)}
+.set>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.set dt{font-family:"Syne";font-weight:600;color:var(--ink);font-size:17px}
+.set dd{color:var(--muted);font-size:16.5px}
+.set dd .rec{display:block;margin-top:6px;color:var(--ink);font-size:15.5px}
+.set dd .rec::before{content:"Suositus: ";color:var(--accent);font-weight:600}
+@media(max-width:900px){.doc{grid-template-columns:1fr}.toc{position:static;display:none}}
+@media(max-width:560px){.set>div{grid-template-columns:1fr}}
+</style>
+<style>
+.doc table{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.doc th{color:var(--ink);font-family:"Syne";font-weight:600;font-size:15px}
+.doc td:first-child{color:var(--ink)}
+.doc td{overflow-wrap:anywhere}
+.doc pre{margin-top:16px;background:var(--panel);border:1px solid var(--line-2);border-radius:11px;padding:14px 16px;overflow-x:auto}
+.doc pre code{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--accent-2);white-space:pre}
+.doc code{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+@media(max-width:560px){.doc table{font-size:15px}.doc th,.doc td{padding-right:8px}}
+</style>
+<style>.doc td:first-child{overflow-wrap:normal;hyphens:auto;min-width:8.5em}@media(max-width:560px){.doc thead{display:none}.doc table,.doc tbody,.doc tr,.doc td{display:block;width:100%}.doc tr{padding:12px 0;border-bottom:1px solid var(--line)}.doc td{border:0;padding:2px 0}.doc td:first-child{font-weight:600;min-width:0}}@media(max-width:480px){.doc-head h1{font-size:32px}}</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Siirry sisältöön</a>
+<nav class="site-nav" aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Ordinate, etusivu"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#miten">Miten toimii</a>
+      <a href="index.html#saat">Mitä saat</a>
+      <a href="ohje.html">Käyttöohje</a>
+      <a href="opas.html">Scan-to-BIM opas</a>
+      <a href="tietoturva.html">Tietoturva</a>
+      <a href="index.html#kysymykset">Kysymykset</a>
+      <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
+    </div>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+<header class="doc-head">
+  <div class="wrap">
+    <h1>Tietosuojaseloste</h1>
+    <p>Mitä tietoja Ordinaten lisenssin tarkistus käsittelee, miksi ja kuinka kauan. EU:n tietosuoja-asetuksen (GDPR) 13 ja 14 artiklan mukainen seloste. Päivitetty 17.11.2026.</p>
+  </div>
+</header>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Sisällys">
+    <b>Sisällys</b>
+    <ol>
+      <li><a href="#lyhyesti">Lyhyesti</a></li>
+      <li><a href="#rekisterinpitaja">Rekisterinpitäjä</a></li>
+      <li><a href="#tiedot">Käsiteltävät tiedot</a></li>
+      <li><a href="#peruste">Tarkoitus ja peruste</a></li>
+      <li><a href="#sailytys">Säilytys</a></li>
+      <li><a href="#kasittelijat">Käsittelijät ja siirrot</a></li>
+      <li><a href="#oikeudet">Oikeutesi</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <h2 id="lyhyesti">Lyhyesti</h2>
+    <ul class="dots">
+      <li>Ordinate käsittelee pistepilvet <b>omalla koneellasi</b>. Pistepilviä, malleja tai niiden sisältöä ei lähetetä minnekään.</li>
+      <li>Ohjelma ottaa yhteyttä lisenssipalvelimeen vain tarkistaakseen, että lisenssi on voimassa.</li>
+      <li>Tarkistuksessa lähtee lisenssiavain ja koneen tunniste. Tunniste on tiiviste, josta käyttäjätunnusta tai koneen nimeä ei voi lukea.</li>
+      <li>Tietoja ei käytetä markkinointiin, profilointiin eikä myydä tai luovuteta eteenpäin.</li>
+    </ul>
+
+    <h2 id="rekisterinpitaja">Rekisterinpitäjä</h2>
+    <p><b>Lauri Rekola</b> (Y-tunnus {{YTUNNUS}})<br>Sähköposti: <a href="mailto:rekolalauri@gmail.com">rekolalauri@gmail.com</a></p>
+    <p>Tietosuojaa koskevat kysymykset ja pyynnöt voi lähettää samaan osoitteeseen.</p>
+
+    <h2 id="tiedot">Käsiteltävät tiedot</h2>
+    <table>
+      <thead><tr><th>Tieto</th><th>Mistä</th><th>Mitä tallennetaan</th></tr></thead>
+      <tbody>
+        <tr><td>Lisenssiavain</td><td>ohjelma lähettää tarkistuksessa</td><td>vain avaimen SHA-256-tiiviste, ei itse avainta</td></tr>
+        <tr><td>Koneen tunniste</td><td>ohjelma laskee Windows-käyttäjätunnuksesta ja koneen nimestä</td><td>tunnisteesta palvelimen salaisella avaimella laskettu tiiviste. Käyttäjätunnusta tai koneen nimeä ei lähetetä eikä tallenneta</td></tr>
+        <tr><td>Hyväksytyt käyttöehdot</td><td>aktivointi</td><td>ehtoversion tunniste ja aktivoinnin ajankohta</td></tr>
+        <tr><td>Tarkistuksen ajankohta</td><td>jokainen tarkistus</td><td>viimeisimmän tarkistuksen aika</td></tr>
+        <tr><td>Asiakasyritys</td><td>tilaus</td><td>yrityksen nimi tai tilausviite, lisenssin kesto ja konepaikkojen määrä</td></tr>
+        <tr><td>IP-osoite</td><td>verkkoyhteys</td><td>ei tallenneta. Palveluntarjoaja käsittelee sen yhteyden välittämiseksi ja suojaamiseksi</td></tr>
+      </tbody>
+    </table>
+    <p>Laskutukseen tarvittavia yhteystietoja, kuten yhteyshenkilön nimeä ja sähköpostia, käsitellään tilauksen ja kirjanpidon yhteydessä erillään lisenssipalvelimesta.</p>
+
+    <h2 id="peruste">Tarkoitus ja oikeusperuste</h2>
+    <p>Tietoja käsitellään <b>lisenssisopimuksen toteuttamiseksi</b>: jotta ohjelma toimii vain lisenssin haltijalla, lisenssin konepaikkamäärä pitää ja peruttu tai päättynyt lisenssi lakkaa toimimasta.</p>
+    <p>Koska sopimus on Toimittajan ja asiakasyrityksen välinen, peruste on rekisterinpitäjän ja asiakkaan <b>oikeutettu etu</b> (GDPR 6 artiklan 1 kohdan f alakohta) valvoa sovitun käyttöoikeuden toteutumista. Käsittely on rajattu tähän tarkoitukseen välttämättömään. Laskutustietojen käsittely perustuu lisäksi kirjanpitolain velvoitteisiin.</p>
+    <p>Automaattista päätöksentekoa tai profilointia, jolla olisi oikeusvaikutuksia henkilöön, ei tehdä.</p>
+
+    <h2 id="sailytys">Säilytys</h2>
+    <ul class="dots">
+      <li>Konepaikan tiedot poistetaan heti, kun konepaikka vapautetaan.</li>
+      <li>Lisenssin ja sen aktivointien tiedot poistetaan <b>12 kuukauden kuluttua</b> lisenssin päättymisestä tai perumisesta.</li>
+      <li>Kirjanpitoaineisto säilytetään kirjanpitolain edellyttämän ajan.</li>
+    </ul>
+
+    <h2 id="kasittelijat">Käsittelijät ja siirrot</h2>
+    <table>
+      <thead><tr><th>Palvelu</th><th>Tehtävä</th><th>Sijainti</th></tr></thead>
+      <tbody>
+        <tr><td>Cloudflare, Inc.</td><td>lisenssipalvelin ja sen tietokanta</td><td>tietokanta EU-alueella. Yhtiö on yhdysvaltalainen, ja siirrot perustuvat EU:n ja Yhdysvaltojen tietosuojakehykseen sekä komission vakiosopimuslausekkeisiin</td></tr>
+        <tr><td>GitHub, Inc.</td><td>ohjelman lataukset ja päivitysten tarkistus</td><td>Yhdysvallat. GitHub käsittelee latauspyynnön tiedot omien ehtojensa mukaisesti</td></tr>
+      </tbody>
+    </table>
+    <p>Käsittelijöiden kanssa on tietojenkäsittelysopimus (DPA). Tietoja ei luovuteta muille, ellei laki sitä edellytä.</p>
+
+    <h2 id="oikeudet">Oikeutesi</h2>
+    <p>Sinulla on oikeus saada tietää, mitä tietoja sinusta käsitellään, ja pyytää tietojen oikaisemista tai poistamista tai käsittelyn rajoittamista. Voit myös vastustaa oikeutettuun etuun perustuvaa käsittelyä. Koska koneen tunniste on tiiviste, pyynnön yhteydessä tarvitaan lisenssiavain, jotta oikeat tiedot löytyvät.</p>
+    <p>Jos katsot, että tietojasi käsitellään lainvastaisesti, voit tehdä valituksen <a href="https://tietosuoja.fi">Tietosuojavaltuutetun toimistolle</a>.</p>
+  </article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><a href="kayttoehdot.html">Käyttöehdot</a><a href="tietosuoja.html">Tietosuoja</a><span>© 2026 Lauri Rekola</span></div>
+  </div>
+</footer>
+
+<script>
+const tog = document.querySelector('.navtoggle'), links = document.getElementById('navlinks');
+tog.addEventListener('click', () => { const o = links.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });
+const tocLinks = [...document.querySelectorAll('.toc a')];
+const secs = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-20% 0px -70% 0px'});
+secs.forEach(s => s && spy.observe(s));
+</script>
+</body>
+</html>

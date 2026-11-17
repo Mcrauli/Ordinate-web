@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Käyttöehdot · Ordinate</title>
+<meta name="description" content="Ordinate-ohjelmiston lisenssiehdot yritysasiakkaille: käyttöoikeus, rajoitukset, tulosten tarkastus, vastuunrajoitus ja sovellettava laki.">
+<link rel="canonical" href="https://rekolalauri.fi/Ordinate-web/kayttoehdot.html">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='22' y='22' width='212' height='212' rx='42' fill='%230a0e14' stroke='%23c6f24e' stroke-width='13'/%3E%3Cline x1='128' y1='68' x2='128' y2='188' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Cline x1='68' y1='128' x2='188' y2='128' stroke='%2339d0d8' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='128' r='21' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.doc-head{padding:clamp(48px,7vw,88px) 0 clamp(32px,4vw,48px);border-bottom:1px solid var(--line)}
+.doc-head h1{font-size:clamp(40px,6vw,68px);font-weight:700;letter-spacing:-.03em}
+.doc-head p{margin-top:18px;color:var(--muted);font-size:clamp(18px,2vw,20px);max-width:62ch}
+.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(80px,10vw,120px)}
+.toc{position:sticky;top:96px;align-self:start;font-size:15px}
+.toc b{display:block;font-family:"Syne";font-weight:600;font-size:15px;margin-bottom:12px;color:var(--ink)}
+.toc ol{list-style:none;border-left:1px solid var(--line)}
+.toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent)}
+.doc article{max-width:74ch;min-width:0}
+.doc h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;margin-top:clamp(56px,7vw,80px);scroll-margin-top:96px}
+.doc h2:first-child{margin-top:0}
+.doc h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:32px}
+.doc p,.doc li{color:var(--muted);font-size:17px}
+.doc p{margin-top:14px}
+.doc strong,.doc b{color:var(--ink);font-weight:500}
+.doc ol.num{list-style:none;counter-reset:n;margin-top:18px}
+.doc ol.num>li{counter-increment:n;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line)}
+.doc ol.num>li:last-child{border-bottom:1px solid var(--line)}
+.doc ol.num>li::before{content:counter(n);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Syne";font-weight:700;font-size:15px;color:var(--bg);background:var(--accent)}
+.doc ul.dots{margin-top:14px;padding-left:20px}
+.doc ul.dots li{margin-top:6px}
+.doc ul.dots li::marker{color:var(--accent)}
+.ui{font-family:"Spline Sans";font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:2px 8px;font-size:.92em;white-space:nowrap}
+.file{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+.note{margin-top:20px;border:1px solid var(--line-2);background:var(--panel);border-radius:11px;padding:16px 18px;font-size:16px;color:var(--muted)}
+.note b{color:var(--ink)}
+.set{margin-top:20px;border-top:1px solid var(--line)}
+.set>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.set dt{font-family:"Syne";font-weight:600;color:var(--ink);font-size:17px}
+.set dd{color:var(--muted);font-size:16.5px}
+.set dd .rec{display:block;margin-top:6px;color:var(--ink);font-size:15.5px}
+.set dd .rec::before{content:"Suositus: ";color:var(--accent);font-weight:600}
+@media(max-width:900px){.doc{grid-template-columns:1fr}.toc{position:static;display:none}}
+@media(max-width:560px){.set>div{grid-template-columns:1fr}}
+</style>
+<style>
+.doc table{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.doc th{color:var(--ink);font-family:"Syne";font-weight:600;font-size:15px}
+.doc td:first-child{color:var(--ink)}
+.doc td{overflow-wrap:anywhere}
+.doc pre{margin-top:16px;background:var(--panel);border:1px solid var(--line-2);border-radius:11px;padding:14px 16px;overflow-x:auto}
+.doc pre code{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--accent-2);white-space:pre}
+.doc code{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
+@media(max-width:560px){.doc table{font-size:15px}.doc th,.doc td{padding-right:8px}}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Siirry sisältöön</a>
+<nav class="site-nav" aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Ordinate, etusivu"><svg class="logo" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#miten">Miten toimii</a>
+      <a href="index.html#saat">Mitä saat</a>
+      <a href="ohje.html">Käyttöohje</a>
+      <a href="opas.html">Scan-to-BIM opas</a>
+      <a href="tietoturva.html">Tietoturva</a>
+      <a href="index.html#kysymykset">Kysymykset</a>
+      <a class="btn btn-primary" href="https://github.com/Mcrauli/Ordinate-web/releases/latest/download/Ordinate-Setup.exe">Lataa</a>
+    </div>
+    <button class="navtoggle" aria-label="Avaa valikko" aria-expanded="false" aria-controls="navlinks">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+<header class="doc-head">
+  <div class="wrap">
+    <h1>Käyttöehdot</h1>
+    <p>Ordinate-ohjelmiston lisenssiehdot yritysasiakkaille. Versio <b>2026-11-17</b>. Ehdot hyväksytään ohjelman aktivoinnin yhteydessä.</p>
+  </div>
+</header>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Sisällys">
+    <b>Sisällys</b>
+    <ol>
+      <li><a href="#osapuolet">Osapuolet</a></li>
+      <li><a href="#oikeus">Käyttöoikeus</a></li>
+      <li><a href="#rajoitukset">Rajoitukset</a></li>
+      <li><a href="#aineisto">Aineisto ja tulokset</a></li>
+      <li><a href="#tarkistus">Tulosten tarkastus</a></li>
+      <li><a href="#lisenssi">Lisenssin tarkistus</a></li>
+      <li><a href="#maksut">Maksut ja päättyminen</a></li>
+      <li><a href="#takuu">Virheet ja tuki</a></li>
+      <li><a href="#vastuu">Vastuunrajoitus</a></li>
+      <li><a href="#komponentit">Avoimen lähdekoodin osat</a></li>
+      <li><a href="#muutokset">Ehtojen muutokset</a></li>
+      <li><a href="#laki">Sovellettava laki</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <h2 id="osapuolet">1. Osapuolet ja soveltaminen</h2>
+    <p>Ohjelmiston toimittaja on <b>Lauri Rekola</b> (Y-tunnus {{YTUNNUS}}), jäljempänä <i>Toimittaja</i>. Asiakas on se yritys tai yhteisö, jolle lisenssiavain on toimitettu, jäljempänä <i>Asiakas</i>.</p>
+    <p>Ehdot koskevat Ordinate-ohjelmistoa, sen päivityksiä ja ohjeita. Ohjelmisto myydään vain elinkeinonharjoittajille, eikä sitä tarjota kuluttajille. Aktivoiva henkilö vakuuttaa, että hänellä on oikeus hyväksyä ehdot Asiakkaan puolesta.</p>
+    <p>Jos Asiakkaan kanssa on tehty erillinen kirjallinen sopimus, se on ensisijainen näihin ehtoihin nähden.</p>
+
+    <h2 id="oikeus">2. Käyttöoikeus</h2>
+    <p>Asiakas saa lisenssin voimassaoloajaksi <b>ei-yksinomaisen ja ei-siirrettävän</b> oikeuden käyttää ohjelmistoa omassa liiketoiminnassaan enintään niin monella koneella kuin lisenssissä on konepaikkoja.</p>
+    <p>Ohjelmiston tekijänoikeudet ja muut immateriaalioikeudet kuuluvat Toimittajalle. Asiakas saa vain näissä ehdoissa nimenomaisesti mainitun käyttöoikeuden.</p>
+
+    <h2 id="rajoitukset">3. Rajoitukset</h2>
+    <p>Asiakas ei saa:</p>
+    <ul class="dots">
+      <li>myydä, vuokrata, lainata tai muuten luovuttaa ohjelmistoa tai lisenssiavainta kolmannelle;</li>
+      <li>kiertää, poistaa tai muuttaa lisenssin tarkistusta;</li>
+      <li>purkaa, takaisinmallintaa tai muuntaa ohjelmistoa lähdekoodiksi muuten kuin siltä osin kuin tekijänoikeuslaki sen pakottavasti sallii.</li>
+    </ul>
+
+    <h2 id="aineisto">4. Asiakkaan aineisto ja tulokset</h2>
+    <p>Ohjelmisto käsittelee pistepilvet <b>Asiakkaan omalla koneella</b>. Pistepilviä, malleja tai niiden sisältöä ei lähetetä Toimittajalle eikä muualle.</p>
+    <p>Asiakas omistaa käsittelemänsä aineiston ja ohjelmistolla tuottamansa mallit ja piirustukset. Asiakas vastaa siitä, että sillä on oikeus käsitellä käyttämäänsä aineistoa.</p>
+
+    <h2 id="tarkistus">5. Tulosten tarkastus</h2>
+    <p>Ohjelmisto tuottaa rakennusosien mallin pistepilvestä <b>automaattisesti</b>. Automaattisesti tunnistetut seinät, aukot, laatat ja muut osat ja niiden mitat voivat sisältää virheitä tai puuttua.</p>
+    <p><b>Asiakas vastaa tulosten tarkastamisesta</b> ennen kuin niitä käytetään suunnittelussa, mitoituksessa, rakentamisessa, määrälaskennassa tai muussa päätöksenteossa. Ohjelmisto ei korvaa pätevän suunnittelijan harkintaa.</p>
+
+    <h2 id="lisenssi">6. Lisenssin tarkistus</h2>
+    <p>Ohjelmisto tarkistaa lisenssin voimassaolon Toimittajan lisenssipalvelimelta aktivoinnissa ja sen jälkeen ajoittain. Ilman verkkoyhteyttä ohjelmisto toimii enintään <b>30 päivää</b> viimeisimmästä onnistuneesta tarkistuksesta. Tarkistuksessa käsiteltävät tiedot on kuvattu <a href="tietosuoja.html">tietosuojaselosteessa</a>.</p>
+    <p>Jos Asiakas vaihtaa konetta, Toimittaja vapauttaa konepaikan pyynnöstä.</p>
+
+    <h2 id="maksut">7. Maksut, voimassaolo ja päättyminen</h2>
+    <p>Lisenssin hinta, kesto ja konepaikkojen määrä määräytyvät tilausvahvistuksen tai tarjouksen mukaan. Lisenssi päättyy voimassaoloajan lopussa, ellei sitä uusita.</p>
+    <p>Toimittaja voi perua lisenssin, jos Asiakas ei maksa erääntynyttä maksua kirjallisesta muistutuksesta huolimatta tai rikkoo olennaisesti näitä ehtoja. Lisenssin päätyttyä ohjelmisto lakkaa toimimasta, mutta jo tuotetut mallit jäävät Asiakkaalle.</p>
+
+    <h2 id="takuu">8. Virheet ja tuki</h2>
+    <p>Toimittaja korjaa ohjelmiston olennaisia virheitä kohtuullisessa ajassa ja toimittaa korjaukset päivityksinä. Virheistä voi ilmoittaa sähköpostilla.</p>
+    <p>Muilta osin ohjelmisto toimitetaan <b>sellaisena kuin se on</b>. Toimittaja ei takaa, että ohjelmisto toimii keskeytyksettä tai virheettä tai että se soveltuu Asiakkaan tiettyyn tarkoitukseen.</p>
+
+    <h2 id="vastuu">9. Vastuunrajoitus</h2>
+    <p>Toimittaja ei vastaa välillisistä vahingoista, kuten saamatta jääneestä voitosta, liiketoiminnan keskeytymisestä, tietojen menetyksestä tai virheellisen tuloksen perusteella tehdyistä päätöksistä.</p>
+    <p>Toimittajan kokonaisvastuu rajoittuu määrään, jonka Asiakas on maksanut lisenssistä vahinkoa edeltäneiden 12 kuukauden aikana.</p>
+    <p>Vastuunrajoitukset eivät koske vahinkoa, joka on aiheutettu tahallisesti tai törkeällä huolimattomuudella.</p>
+
+    <h2 id="komponentit">10. Avoimen lähdekoodin osat</h2>
+    <p>Ohjelmisto sisältää avoimen lähdekoodin komponentteja, jotka on lueteltu lisensseineen asennuskansion tiedostossa <span class="file">THIRD-PARTY-NOTICES.md</span>. Kyseisiin komponentteihin sovelletaan niiden omia lisenssejä.</p>
+
+    <h2 id="muutokset">11. Ehtojen muutokset</h2>
+    <p>Toimittaja voi päivittää ehtoja. Uusi versio julkaistaan tällä sivulla, ja se hyväksytään seuraavan aktivoinnin yhteydessä. Olennaisista muutoksista ilmoitetaan Asiakkaalle etukäteen. Voimassa olevan lisenssin aikana Asiakkaan vahingoksi tehtävä olennainen muutos ei koske Asiakasta ilman tämän suostumusta.</p>
+
+    <h2 id="laki">12. Sovellettava laki ja riidat</h2>
+    <p>Ehtoihin sovelletaan Suomen lakia. Riidat pyritään ratkaisemaan ensin neuvottelemalla. Muussa tapauksessa ne ratkaistaan Toimittajan kotipaikan käräjäoikeudessa.</p>
+    <p>Yhteystiedot: <a href="mailto:rekolalauri@gmail.com">rekolalauri@gmail.com</a></p>
+  </article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><a href="kayttoehdot.html">Käyttöehdot</a><a href="tietosuoja.html">Tietosuoja</a><span>© 2026 Lauri Rekola</span></div>
+  </div>
+</footer>
+
+<script>
+const tog = document.querySelector('.navtoggle'), links = document.getElementById('navlinks');
+tog.addEventListener('click', () => { const o = links.classList.toggle('open'); tog.setAttribute('aria-expanded', o); });
+const tocLinks = [...document.querySelectorAll('.toc a')];
+const secs = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-20% 0px -70% 0px'});
+secs.forEach(s => s && spy.observe(s));
+</script>
+</body>
+</html>

@@ -61,6 +61,7 @@
 .doc code{font-family:"JetBrains Mono",monospace;font-size:.86em;color:var(--accent-2)}
 @media(max-width:560px){.doc table{font-size:15px}.doc th,.doc td{padding-right:8px}}
 </style>
+<style>.doc td:first-child{overflow-wrap:normal;hyphens:auto;min-width:8.5em}@media(max-width:560px){.doc thead{display:none}.doc table,.doc tbody,.doc tr,.doc td{display:block;width:100%}.doc tr{padding:12px 0;border-bottom:1px solid var(--line)}.doc td{border:0;padding:2px 0}.doc td:first-child{font-weight:600;min-width:0}}</style>
 </head>
 <body>
 
@@ -85,7 +86,7 @@
 <header class="doc-head">
   <div class="wrap">
     <h1>Tietoturva</h1>
-    <p>Mitä Ordinate tekee koneellasi ja verkossa, ja miten voit tarkistaa sen itse. Kaikki alla oleva on tarkistettu ohjelman lähdekoodista versiossa 0.9.37.</p>
+    <p>Mitä Ordinate tekee koneellasi ja verkossa, ja miten voit tarkistaa sen itse. Kaikki alla oleva on tarkistettu ohjelman lähdekoodista versiossa 0.9.39.</p>
   </div>
 </header>
 
@@ -110,8 +111,8 @@
     <ul class="dots">
       <li>Ordinate on tavallinen Windows-työpöytäohjelma. Se toimii <b>käyttäjän omilla oikeuksilla</b> eikä pyydä ylläpitäjän oikeuksia käytön aikana.</li>
       <li>Pistepilviä, malleja tai muita tiedostojasi <b>ei lähetetä minnekään</b>. Kaikki laskenta tehdään omalla koneellasi.</li>
-      <li>Ohjelmassa ei ole käyttäjätiliä, lisenssipalvelinta eikä telemetriaa.</li>
-      <li>Ainoa verkkoyhteys on päivitysten tarkistus. Sen voi kytkeä pois, jolloin ohjelma ei ota verkkoon yhteyttä lainkaan.</li>
+      <li>Ohjelmassa ei ole käyttäjätiliä eikä telemetriaa.</li>
+      <li>Verkkoyhteyksiä on kaksi: <b>lisenssin tarkistus</b> ja päivitysten tarkistus. Päivitystarkistuksen voi kytkeä pois. Lisenssi toimii ilman verkkoa 30 päivää kerrallaan.</li>
       <li>Päivitykset ovat <b>julkaisijan allekirjoittamia</b>, ja ohjelma hylkää päivityksen, jonka allekirjoitus ei täsmää.</li>
     </ul>
 
@@ -126,6 +127,7 @@
       <tbody>
         <tr><td>Pistepilvet, jotka itse avaat</td><td>vain valitsemasi tiedostot luetaan</td></tr>
         <tr><td>Tulokset (IFC, DXF, JSON, korjaukset)</td><td>valitsemasi tulostekansio</td></tr>
+        <tr><td>Lisenssiavain ja allekirjoitettu lisenssitodiste</td><td><span class="file">%APPDATA%\Ordinate\license.json</span></td></tr>
         <tr><td>Ajohistoria (kestot, määrät, koneen tiedot)</td><td><span class="file">%APPDATA%\Ordinate</span></td></tr>
         <tr><td>Väliaikaistiedostot ja loki</td><td><span class="file">%TEMP%</span></td></tr>
         <tr><td>Päivityskäytäntö (vain luku)</td><td><span class="file">HKLM / HKCU\SOFTWARE\Policies\Ordinate</span></td></tr>
@@ -137,11 +139,12 @@
     <table>
       <thead><tr><th>Yhteys</th><th>Milloin</th><th>Mitä lähtee</th></tr></thead>
       <tbody>
+        <tr><td><span class="file">ordinate-license</span> (Cloudflare)</td><td>aktivoinnissa ja käynnistyksen jälkeen taustalla</td><td>lisenssiavain ja koneen tunnisteen tiiviste (ei käyttäjätunnusta eikä koneen nimeä). Ks. <a href="tietosuoja.html">tietosuojaseloste</a></td></tr>
         <tr><td><span class="file">api.github.com</span></td><td>käynnistyksessä, ellei kytketty pois</td><td>pyyntö julkaisulistasta, ei tietoja sinusta</td></tr>
         <tr><td><span class="file">github.com</span> ja GitHubin latauspalvelin</td><td>vain kun painat <span class="ui">Päivitä nyt</span></td><td>ei mitään, pelkkä lataus</td></tr>
       </tbody>
     </table>
-    <p>Muita verkkoyhteyksiä ohjelmassa ei ole.</p>
+    <p>Muita verkkoyhteyksiä ohjelmassa ei ole. Lisenssipalvelimen vastaus on Ed25519-allekirjoitettu, joten väärennetty palvelin ei voi myöntää lisenssiä.</p>
 
     <h2 id="paivitykset">Päivitykset</h2>
     <p>Päivitys <b>ei asennu itsestään</b>. Ordinate kertoo uudesta versiosta käynnistyessään, ja sinä päätät painatko <span class="ui">Päivitä nyt</span>.</p>
@@ -153,7 +156,7 @@
 
     <h2 id="aitous">Latauksen aitouden tarkistus</h2>
     <p>Jokaisen <a href="https://github.com/Mcrauli/Ordinate-web/releases">julkaisun</a> tiedostojen rinnalla on <span class="file">.sha256</span>- ja <span class="file">.sig.json</span>-tiedostot. Asennetulla Ordinatella voit tarkistaa minkä tahansa ladatun tiedoston:</p>
-    <pre><code>"%LOCALAPPDATA%\Programs\Ordinate\ordinate-cli.exe" verify Ordinate-Setup-0.9.37.exe</code></pre>
+    <pre><code>"%LOCALAPPDATA%\Programs\Ordinate\ordinate-cli.exe" verify Ordinate-Setup-0.9.39.exe</code></pre>
     <p>Komento tulostaa <b>AITO</b> vain, jos allekirjoitus on julkaisijan ja tiedosto on muuttumaton. Allekirjoitustiedoston on oltava samassa kansiossa.</p>
 
     <h2 id="diagnostiikka">Diagnostiikka</h2>
@@ -175,7 +178,7 @@
 <footer>
   <div class="wrap">
     <a class="brand" href="index.html"><svg class="logo" style="width:24px;height:24px" viewBox="0 0 256 256" aria-hidden="true"><rect x="22" y="22" width="212" height="212" rx="42" fill="#0a0e14" stroke="#c6f24e" stroke-width="13"/><line x1="128" y1="68" x2="128" y2="188" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><line x1="68" y1="128" x2="188" y2="128" stroke="#39d0d8" stroke-width="12" stroke-linecap="round"/><circle cx="128" cy="128" r="21" fill="#c6f24e"/></svg>Ordinate</a>
-    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><span>© 2026 Lauri Rekola</span></div>
+    <div class="links"><a href="index.html">Etusivu</a><a href="ohje.html">Käyttöohje</a><a href="tietoturva.html">Tietoturva</a><a href="https://github.com/Mcrauli/Ordinate-web/releases">Versiot</a><a href="kayttoehdot.html">Käyttöehdot</a><a href="tietosuoja.html">Tietosuoja</a><span>© 2026 Lauri Rekola</span></div>
   </div>
 </footer>
 
